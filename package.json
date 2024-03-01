@@ -1,0 +1,42 @@
+{
+  "name": "dsi-p7",
+  "version": "1.0.0",
+  "description": "P7 - DSI - 2023-24",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "coverage": "nyc npm test && nyc report --reporter=lcov",
+    "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "build": "tsc -p .",
+    "start": "npm run build && node dist/index.js",
+    "lint": "eslint .",
+    "format": "npx prettier --write .",
+    "docs": "typedoc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "@types/pdfkit": "^0.13.4",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/parser": "^6.20.0",
+    "chai": "^4.4.1",
+    "coveralls": "^3.1.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "mocha": "^10.3.0",
+    "nyc": "^15.1.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "tsc-watch": "^6.0.4",
+    "typedoc": "^0.25.7"
+  },
+  "dependencies": {
+    "@types/node": "^20.11.21",
+    "fs": "^0.0.1-security",
+    "pdfkit": "^0.14.0",
+    "typescript": "^5.3.3"
+  }
+}
