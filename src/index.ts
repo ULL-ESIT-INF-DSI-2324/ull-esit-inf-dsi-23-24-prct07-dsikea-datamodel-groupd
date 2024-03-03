@@ -58,8 +58,7 @@ function testPromptUser(): void {
       case Commands.Add:
         promptAdd();
         break;
-      
-  }
+    }
   })
 }
 testPromptUser();
