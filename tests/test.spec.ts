@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { add } from '../src/index';
+import { add } from '../src/index.js';
 
 describe('Test', () => {
   it('should return 3', () => {

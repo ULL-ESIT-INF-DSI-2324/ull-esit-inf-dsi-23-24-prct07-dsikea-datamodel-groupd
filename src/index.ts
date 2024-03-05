@@ -4,7 +4,7 @@ export function add(a: number, b: number): number {
 
 console.log("Testing add function: ", add(1, 2));
 
-import * as inquirer from "inquirer";
+import inquirer from "inquirer";
 
 const collection = [
   ["Go to the gym", false],
