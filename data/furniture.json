@@ -1,0 +1,18 @@
+[
+  {
+    "id": 5,
+    "name": "Table5",
+    "description": "Wooden table",
+    "dimensions": "100x100x100",
+    "material": "Wood",
+    "price": 120
+  },
+  {
+    "id": 6,
+    "name": "Table5",
+    "description": "Wooden table",
+    "dimensions": "100x100x100",
+    "material": "Wood",
+    "price": 120
+  }
+]

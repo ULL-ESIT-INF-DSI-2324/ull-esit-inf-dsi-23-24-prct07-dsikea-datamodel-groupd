@@ -61,4 +61,37 @@ function testPromptUser(): void {
     }
   })
 }
-testPromptUser();
+
+
+// Testing database
+import { FurnitureService } from "./database/FurnitureService.js";
+import { IFurniture } from "./interfaces/Furniture.js";
+const furnitureService = FurnitureService.getInstance();
+
+console.log("Furniture collection: ", await furnitureService.getCollection());
+const furniture: IFurniture = {
+  id: 3,
+  name: "Table3",
+  description: "Wooden table",
+  dimensions: "100x100x100",
+  material: "Wood",
+  price: 100
+}
+
+const furniture2: IFurniture = {
+  id: 6,
+  name: "Table5",
+  description: "Wooden table",
+  dimensions: "100x100x100",
+  material: "Wood",
+  price: 120
+}
+// await furnitureService.addFurniture(furniture);
+// await furnitureService.addFurniture(furniture2);
+await furnitureService.removeFurniture(furniture.id);
+console.log("Furniture collection: ", await furnitureService.getCollection());
+
+
+
+
+// testPromptUser();

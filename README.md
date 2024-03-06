@@ -17,6 +17,33 @@ Oscar Cordobés Navarro - alu0101478081
 
 ## Objetivos
 
+## Estructura del proyecto
+```
+/
+├── /src
+│   ├── index.ts
+│   ├── /interfaces
+│   │   ├── Furniture.ts
+│   │   ├── Supplier.ts
+│   │   └── Customer.ts
+│   ├── /x
+│   │   ├── Stock.ts
+│   │   └── TransactionService.ts
+│   └── /database
+│       └── Database.ts
+│       └── FurnitureService.ts
+│       └── SupplierService.ts
+│       └── CustomerService.ts
+│       └── ...
+├── /data
+│   ├── furniture.json
+│   ├── suppliers.json
+│   ├── customers.json
+│   └── stock.json
+├── /test
+└── package.json
+```
+
 ## Desarrollo de la práctica
 
 ## Conclusiones
