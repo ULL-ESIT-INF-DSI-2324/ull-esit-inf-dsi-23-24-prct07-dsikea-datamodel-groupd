@@ -1,7 +1,7 @@
 /**
  * Interface to represent the data structure of a client
  */
-export interface Client {
+export interface IClient {
   id: number;
   name: string;
   contact: string;

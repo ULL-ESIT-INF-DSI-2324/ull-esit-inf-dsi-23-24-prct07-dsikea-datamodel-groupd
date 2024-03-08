@@ -1,7 +1,7 @@
 /**
  * Interface to represent the data structure of a provider
  */
-export interface Provider {
+export interface ISupplier {
   id: number;
   name: string;
   contact: string;
