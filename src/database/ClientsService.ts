@@ -126,7 +126,7 @@ export class ClientService {
   }
 
   /**
-   * @method getClientByContact - Method to get clients from the collection by contact (partial match)
+   * @method getClientsByContact - Method to get clients from the collection by contact (partial match)
    * @param contact {string} - The contact of the clients to get
    * @returns {IClient[]} - Clients that match the contact
    */
@@ -141,7 +141,7 @@ export class ClientService {
   }
 
   /**
-   * @method getClientByAddress - Method to get clients from the collection by address (partial match)
+   * @method getClientsByAddress - Method to get clients from the collection by address (partial match)
    * @param address {string} - The address of the clients to get
    * @returns {IClient[]} - Clients that match the address
    */
