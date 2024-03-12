@@ -1,5 +1,5 @@
 /**
- * Interface to represent the data structure of a provider
+ * @interface to represent the data structure of a provider
  */
 export interface ISupplier {
   id: number;

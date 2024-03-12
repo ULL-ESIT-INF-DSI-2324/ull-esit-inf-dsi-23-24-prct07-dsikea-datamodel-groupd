@@ -1,6 +1,6 @@
-import { Low } from 'lowdb';
-import { JSONFile } from 'lowdb/node';
-import { ISupplier } from '../interfaces/Supplier.js';
+import { Low } from "lowdb";
+import { JSONFile } from "lowdb/node";
+import { ISupplier } from "../interfaces/ISupplier.js";
 
 /**
  * @class SupplierService - Service to manage the Supplier collection
@@ -10,7 +10,7 @@ export class SupplierService {
   private SupplierDB: Low<ISupplier[]>;
 
   constructor() {
-    this.SupplierDB = new Low(new JSONFile('./data/Supplier.json'), []);
+    this.SupplierDB = new Low(new JSONFile("./data/supplier.json"), []);
     this.initCollection();
   }
 
@@ -49,23 +49,26 @@ export class SupplierService {
 
   /**
    * @method addSupplier - Method to add a Supplier to the collection
-   * @param Supplier {ISupplier} - The Supplier to add to the collection
+   * @param supplier {ISupplier} - The Supplier to add to the collection
    * @returns {Promise<void>} - A promise that resolves when the Supplier is added to the collection
    */
-  public async addSupplier(Supplier: ISupplier): Promise<void> {
+  public async addSupplier(supplier: ISupplier): Promise<void> {
+    await this.SupplierDB.read();
     // Check if the Supplier already exists
-    const exists = this.SupplierDB.data.find((f) => f === Supplier);
+    const exists = this.SupplierDB.data.find((f) => f === supplier);
     if (exists) {
-      throw new Error('Supplier already exists');
+      throw new Error("Supplier already exists");
     }
 
     // Check if the Supplier id or name already exists
-    const idExists = this.SupplierDB.data.find((f) => f.id === Supplier.id || f.name === Supplier.name);
+    const idExists = this.SupplierDB.data.find(
+      (f) => f.id === supplier.id || f.name === supplier.name,
+    );
     if (idExists) {
-      throw new Error('Supplier id already exists');
+      throw new Error("Supplier id already exists");
     }
 
-    this.SupplierDB.data.push(Supplier);
+    this.SupplierDB.data.push(supplier);
     await this.SupplierDB.write();
   }
 
@@ -75,6 +78,7 @@ export class SupplierService {
    * @returns {Promise<void>} - A promise that resolves when the Supplier is removed from the collection
    */
   public async removeSupplier(id: number): Promise<void> {
+    await this.SupplierDB.read();
     this.SupplierDB.data = this.SupplierDB.data.filter((f) => f.id !== id);
     await this.SupplierDB.write();
   }
@@ -85,6 +89,7 @@ export class SupplierService {
    * @returns {Promise<void>} - A promise that resolves when the Supplier is updated in the collection
    */
   public async updateSupplier(Supplier: ISupplier): Promise<void> {
+    await this.SupplierDB.read();
     this.SupplierDB.data = this.SupplierDB.data.map((f) => {
       if (f.id === Supplier.id) {
         return Supplier;
@@ -97,26 +102,56 @@ export class SupplierService {
   /**
    * @method getSupplierById - Method to get a Supplier from the collection by id
    * @param id {number} - The id of the Supplier to get
-   * @returns {Promise<ISupplier>} - A promise that resolves with the Supplier
+   * @returns {ISupplier} - Furniture that match the id
    */
-  public async getSupplierById(id: number): Promise<ISupplier> {
-    const Supplier = this.SupplierDB.data.find((f) => f.id === id);
-    if (!Supplier) {
-      throw new Error('Supplier not found');
+  public getSupplierById(id: number): ISupplier {
+    const supplier = this.SupplierDB.data.find((f) => f.id === id);
+    if (!supplier) {
+      throw new Error("Supplier not found");
     }
-    return Supplier;
+    return supplier;
   }
 
   /**
-   * @method getSupplierByName - Method to get a Supplier from the collection by name
+   * @method getSuppliersByName - Method to get a Supplier from the collection by name (partial match)
    * @param name {string} - The name of the Supplier to get
-   * @returns {Promise<ISupplier>} - A promise that resolves with the Supplier
+   * @returns {ISupplier[]} - Furnitures that match the name
    */
-  public async getSupplierByName(name: string): Promise<ISupplier> {
-    const Supplier = this.SupplierDB.data.find((f) => f.name === name);
-    if (!Supplier) {
-      throw new Error('Supplier not found');
+  public getSuppliersByName(name: string): ISupplier[] {
+    const suppliers = this.SupplierDB.data.filter((f) => f.name.includes(name));
+    if (!suppliers) {
+      throw new Error("Supplier not found");
     }
-    return Supplier;
+    return suppliers;
+  }
+
+  /**
+   * @method getSupplierByContact - Method to get a Supplier from the collection by contact (partial match)
+   * @param contact {string} - The contact of the Supplier to get
+   * @returns {ISupplier[]} - Furnitures that match the contact
+   */
+  public getSupplierByContact(contact: string): ISupplier[] {
+    const suppliers = this.SupplierDB.data.filter((f) =>
+      f.contact.includes(contact),
+    );
+    if (!suppliers) {
+      throw new Error("Supplier not found");
+    }
+    return suppliers;
+  }
+
+  /**
+   * @method getSupplierByAddress - Method to get a Supplier from the collection by address (partial match)
+   * @param address {string} - The address of the Supplier to get
+   * @returns {ISupplier[]} - Furnitures that match the address
+   */
+  public getSupplierByAddress(address: string): ISupplier[] {
+    const suppliers = this.SupplierDB.data.filter((f) =>
+      f.address.includes(address),
+    );
+    if (!suppliers) {
+      throw new Error("Supplier not found");
+    }
+    return suppliers;
   }
 }

@@ -1,6 +1,6 @@
-import { Low } from 'lowdb';
-import { JSONFile } from 'lowdb/node';
-import { IClient } from '../interfaces/Client.js';
+import { Low } from "lowdb";
+import { JSONFile } from "lowdb/node";
+import { IClient } from "../interfaces/IClient.js";
 
 /**
  * @class ClientService - Service to manage the client collection
@@ -10,7 +10,7 @@ export class ClientService {
   private clientDB: Low<IClient[]>;
 
   constructor() {
-    this.clientDB = new Low(new JSONFile('./data/client.json'), []);
+    this.clientDB = new Low(new JSONFile("./data/client.json"), []);
     this.initCollection();
   }
 
@@ -31,7 +31,7 @@ export class ClientService {
    */
   private async initCollection(): Promise<void> {
     await this.clientDB.read();
-    /* istanbul ignore if */
+
     if (!this.clientDB.data) {
       this.clientDB.data = [];
       await this.clientDB.write();
@@ -53,16 +53,19 @@ export class ClientService {
    * @returns {Promise<void>} - A promise that resolves when the client is added to the collection
    */
   public async addClient(client: IClient): Promise<void> {
+    await this.clientDB.read();
     // Check if the client already exists
     const exists = this.clientDB.data.find((f) => f === client);
     if (exists) {
-      throw new Error('client already exists');
+      throw new Error("client already exists");
     }
 
     // Check if the client id or name already exists
-    const idExists = this.clientDB.data.find((f) => f.id === client.id || f.name === client.name);
+    const idExists = this.clientDB.data.find(
+      (f) => f.id === client.id || f.name === client.name,
+    );
     if (idExists) {
-      throw new Error('client id already exists');
+      throw new Error("client id already exists");
     }
 
     this.clientDB.data.push(client);
@@ -75,6 +78,7 @@ export class ClientService {
    * @returns {Promise<void>} - A promise that resolves when the client is removed from the collection
    */
   public async removeClient(id: number): Promise<void> {
+    await this.clientDB.read();
     this.clientDB.data = this.clientDB.data.filter((f) => f.id !== id);
     await this.clientDB.write();
   }
@@ -85,6 +89,7 @@ export class ClientService {
    * @returns {Promise<void>} - A promise that resolves when the client is updated in the collection
    */
   public async updateClient(client: IClient): Promise<void> {
+    await this.clientDB.read();
     this.clientDB.data = this.clientDB.data.map((f) => {
       if (f.id === client.id) {
         return client;
@@ -97,26 +102,56 @@ export class ClientService {
   /**
    * @method getClientById - Method to get a client from the collection by id
    * @param id {number} - The id of the client to get
-   * @returns {Promise<IClient>} - A promise that resolves with the client
+   * @returns {IClient} - Client that matches the id
    */
-  public async getClientById(id: number): Promise<IClient> {
+  public getClientById(id: number): IClient {
     const client = this.clientDB.data.find((f) => f.id === id);
     if (!client) {
-      throw new Error('client not found');
+      throw new Error("client not found");
     }
     return client;
   }
 
   /**
-   * @method getClientByName - Method to get a client from the collection by name
-   * @param name {string} - The name of the client to get
-   * @returns {Promise<IClient>} - A promise that resolves with the client
+   * @method getClientsByName - Method to get clients from the collection by name (partial match)
+   * @param name {string} - The name of the clients to get
+   * @returns {IClient[]} - Clients that match the name
    */
-  public async getClientByName(name: string): Promise<IClient> {
-    const client = this.clientDB.data.find((f) => f.name === name);
-    if (!client) {
-      throw new Error('client not found');
+  public getClientsByName(name: string): IClient[] {
+    const clients = this.clientDB.data.filter((f) => f.name.includes(name));
+    if (!clients) {
+      throw new Error("clients not found");
     }
-    return client;
+    return clients;
+  }
+
+  /**
+   * @method getClientByContact - Method to get clients from the collection by contact (partial match)
+   * @param contact {string} - The contact of the clients to get
+   * @returns {IClient[]} - Clients that match the contact
+   */
+  public getClientsByContact(contact: string): IClient[] {
+    const clients = this.clientDB.data.filter((f) =>
+      f.contact.includes(contact),
+    );
+    if (!clients) {
+      throw new Error("clients not found");
+    }
+    return clients;
+  }
+
+  /**
+   * @method getClientByAddress - Method to get clients from the collection by address (partial match)
+   * @param address {string} - The address of the clients to get
+   * @returns {IClient[]} - Clients that match the address
+   */
+  public getClientsByAddress(address: string): IClient[] {
+    const clients = this.clientDB.data.filter((f) =>
+      f.address.includes(address),
+    );
+    if (!clients) {
+      throw new Error("clients not found");
+    }
+    return clients;
   }
 }

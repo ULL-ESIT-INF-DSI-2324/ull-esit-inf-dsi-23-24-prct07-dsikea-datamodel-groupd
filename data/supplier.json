@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Supplier1",
+    "address": "Address1",
+    "contact": "1234567890"
+  },
+  {
+    "id": 2,
+    "name": "Supplier2",
+    "address": "Address2",
+    "contact": "1234567890"
+  },
+  {
+    "id": 3,
+    "name": "Supplier1 - 3",
+    "address": "Address3",
+    "contact": "1234567890"
+  }
+]

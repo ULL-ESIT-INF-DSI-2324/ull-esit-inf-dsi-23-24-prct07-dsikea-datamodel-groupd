@@ -8,15 +8,17 @@ import inquirer from "inquirer";
 
 const collection = [
   ["Go to the gym", false],
-  ["Buy some food", true]
-]
+  ["Buy some food", true],
+];
 
 function displayTodoList(): void {
   console.log("Todo list");
   if (showCompleted) {
-    collection.forEach(item => console.log(item[0] + " " + (item[1] ? "Completed" : "")));
+    collection.forEach((item) =>
+      console.log(item[0] + " " + (item[1] ? "Completed" : "")),
+    );
   } else {
-    collection.forEach(item => {
+    collection.forEach((item) => {
       if (!item[1]) {
         console.log(item[0]);
       }
@@ -28,44 +30,47 @@ let showCompleted = true;
 enum Commands {
   Add = "Add New Task",
   Toggle = "Show/Hide Completed",
-  Quit = "Quit"
+  Quit = "Quit",
 }
 
 function promptAdd(): void {
   console.clear();
-  inquirer.prompt({ type: "input", name: "add", message: "Enter task:"})
-    .then(answers => {if (answers["add"] !== "") {
-      collection.push([answers["add"], false])
-    }
-    testPromptUser();
-  })
+  inquirer
+    .prompt({ type: "input", name: "add", message: "Enter task:" })
+    .then((answers) => {
+      if (answers["add"] !== "") {
+        collection.push([answers["add"], false]);
+      }
+      testPromptUser();
+    });
 }
 
 function testPromptUser(): void {
   console.clear();
   displayTodoList();
-  inquirer.prompt({
-    type: "list",
-    name: "command",
-    message: "Choose option",
-    choices: Object.values(Commands)
-  }).then(answers => {
-    switch (answers["command"]) {
-      case Commands.Toggle:
-        showCompleted = !showCompleted;
-        testPromptUser();
-        break;
-      case Commands.Add:
-        promptAdd();
-        break;
-    }
-  })
+  inquirer
+    .prompt({
+      type: "list",
+      name: "command",
+      message: "Choose option",
+      choices: Object.values(Commands),
+    })
+    .then((answers) => {
+      switch (answers["command"]) {
+        case Commands.Toggle:
+          showCompleted = !showCompleted;
+          testPromptUser();
+          break;
+        case Commands.Add:
+          promptAdd();
+          break;
+      }
+    });
 }
-
 
 // Testing database
 import { FurnitureService } from "./database/FurnitureService.js";
-import { IFurniture } from "./interfaces/Furniture.js";
+import { IFurniture } from "./interfaces/IFurniture.js";
 const furnitureService = FurnitureService.getInstance();
 
 console.log("Furniture collection: ", await furnitureService.getCollection());
@@ -75,8 +80,9 @@ const furniture: IFurniture = {
   description: "Wooden table",
   dimensions: "100x100x100",
   material: "Wood",
-  price: 100
-}
+  price: 100,
+  type: "test",
+};
 
 const furniture2: IFurniture = {
   id: 6,
@@ -84,14 +90,30 @@ const furniture2: IFurniture = {
   description: "Wooden table",
   dimensions: "100x100x100",
   material: "Wood",
-  price: 120
-}
+  price: 120,
+  type: "test",
+};
 // await furnitureService.addFurniture(furniture);
 // await furnitureService.addFurniture(furniture2);
-await furnitureService.removeFurniture(furniture.id);
+// await furnitureService.removeFurniture(furniture.id);
 console.log("Furniture collection: ", await furnitureService.getCollection());
 
+// Test add supplier
+import { SupplierService } from "./database/SuppliersService.js";
+import { ISupplier } from "./interfaces/ISupplier.js";
+const supplierService = SupplierService.getInstance();
+const supplier: ISupplier = {
+  id: 3,
+  name: "Supplier1 - 3",
+  address: "Address3",
+  contact: "1234567890",
+};
 
+await supplierService.addSupplier(supplier);
 
+console.log(
+  "Search supplier: ",
+  await supplierService.getSuppliersByName("Supplier1"),
+);
 
 // testPromptUser();
