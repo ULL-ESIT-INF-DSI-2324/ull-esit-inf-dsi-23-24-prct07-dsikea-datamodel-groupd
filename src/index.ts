@@ -73,7 +73,7 @@ import { FurnitureService } from "./database/FurnitureService.js";
 import { IFurniture } from "./interfaces/IFurniture.js";
 const furnitureService = FurnitureService.getInstance();
 
-console.log("Furniture collection: ", await furnitureService.getCollection());
+// console.log("Furniture collection: ", await furnitureService.getCollection());
 const furniture: IFurniture = {
   id: 3,
   name: "Table3",
@@ -96,24 +96,75 @@ const furniture2: IFurniture = {
 // await furnitureService.addFurniture(furniture);
 // await furnitureService.addFurniture(furniture2);
 // await furnitureService.removeFurniture(furniture.id);
-console.log("Furniture collection: ", await furnitureService.getCollection());
+// console.log("Furniture collection: ", await furnitureService.getCollection());
 
 // Test add supplier
 import { SupplierService } from "./database/SuppliersService.js";
 import { ISupplier } from "./interfaces/ISupplier.js";
-const supplierService = SupplierService.getInstance();
-const supplier: ISupplier = {
-  id: 3,
-  name: "Supplier1 - 3",
-  address: "Address3",
-  contact: "1234567890",
-};
+import { StockService } from "./database/StockService.js";
+// const supplierService = SupplierService.getInstance();
+// const supplier: ISupplier = {
+//   id: 3,
+//   name: "Supplier1 - 3",
+//   address: "Address3",
+//   contact: "1234567890",
+// };
 
-await supplierService.addSupplier(supplier);
+// await supplierService.addSupplier(supplier);
 
-console.log(
-  "Search supplier: ",
-  await supplierService.getSuppliersByName("Supplier1"),
-);
+// console.log(
+//   "Search supplier: ",
+//   await supplierService.getSuppliersByName("Supplier1"),
+// );
 
 // testPromptUser();
+
+
+// ---- PRUEBAS OSCAR ----
+
+import { Stock } from "./Stock.js";
+
+// const servicioStock = new StockService();
+// await servicioStock.addStock(3, 10);
+// await servicioStock.addStock(4, 10);
+// await servicioStock.reduceStock(2, 5);
+// await servicioStock.reduceStock(1, 5);
+// await servicioStock.reduceStock(100, 5);
+
+const stock = new Stock();
+// stock.getStock();
+
+
+// console.log("GOLA");
+
+
+// Función que utilice en inquirer para crear un menú de 3 opciones
+// 1. Agregar un nuevo al stock
+// 2. Reducir el stock
+// 3. Mostrar el stock
+// function consoleMenu() {
+//   console.clear();
+//   inquirer
+//     .prompt({
+//       type: "list",
+//       name: "command",
+//       message: "Choose option",
+//       choices: ["Add stock", "Reduce stock", "Show stock"],
+//     })
+//     .then(async (answers) => {
+//       switch (answers["command"]) {
+//         case "Add stock":
+//           // Aquí puedes implementar la lógica para agregar stock
+//           break;
+//         case "Reduce stock":
+//           // Aquí puedes implementar la lógica para reducir stock
+//           break;
+//         case "Show stock":
+//           // Llama a la función stock.getStock() para mostrar el stock
+//           stock.getStock();
+//           break;
+//       }
+//     });
+// }
+
+// consoleMenu();

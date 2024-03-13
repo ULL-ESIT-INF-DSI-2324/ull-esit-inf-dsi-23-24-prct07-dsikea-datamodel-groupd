@@ -61,6 +61,7 @@ export class StockService {
     } else {
       this.stockDB.data.push({ furniture_id, quantity });
     }
+    await this.stockDB.write();
   }
 
   /**
@@ -95,5 +96,6 @@ export class StockService {
       }
       stock.quantity -= quantity;
     }
+    await this.stockDB.write();
   }
 }
