@@ -142,29 +142,37 @@ const stock = new Stock();
 // 1. Agregar un nuevo al stock
 // 2. Reducir el stock
 // 3. Mostrar el stock
-// function consoleMenu() {
-//   console.clear();
-//   inquirer
-//     .prompt({
-//       type: "list",
-//       name: "command",
-//       message: "Choose option",
-//       choices: ["Add stock", "Reduce stock", "Show stock"],
-//     })
-//     .then(async (answers) => {
-//       switch (answers["command"]) {
-//         case "Add stock":
-//           // Aquí puedes implementar la lógica para agregar stock
-//           break;
-//         case "Reduce stock":
-//           // Aquí puedes implementar la lógica para reducir stock
-//           break;
-//         case "Show stock":
-//           // Llama a la función stock.getStock() para mostrar el stock
-//           stock.getStock();
-//           break;
-//       }
-//     });
-// }
+function consoleMenu() {
+  console.clear();
+  inquirer
+    .prompt({
+      type: "list",
+      name: "command",
+      message: "Choose option",
+      choices: ["Show stock"],
+    })
+    .then(async (answers) => {
+      switch (answers["command"]) {
+        case "Show stock":
+          // Llama a la función stock.getStock() para mostrar el stock
+          await stock.getStock();
+          // Espera un input del usuario antes de continuar
+          await waitForInput();
+          consoleMenu(); // Vuelve al menú principal
+          break;
+        case "Back":
+          consoleMenu(); // Vuelve al menú principal
+          break;
+      }
+    });
+}
 
-// consoleMenu();
+async function waitForInput() {
+  await inquirer.prompt({
+    type: "input",
+    name: "continue",
+    message: "Press enter to continue",
+  });
+}
+
+consoleMenu();

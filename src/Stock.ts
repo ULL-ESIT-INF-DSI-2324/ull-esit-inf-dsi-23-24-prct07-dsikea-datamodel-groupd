@@ -11,10 +11,10 @@ export class Stock {
     /**
      * Retrieves the stock data and displays it in a table format.
      */
-    public getStock() {
+    public async getStock() {
         const stockData = this.stockService.getCollection();
         // Creamos objetos que contengan id del mueble, nombre del mueble y cantidad en stock
-        stockData.then((stock) => {
+        await stockData.then((stock) => {
             const tableData = stock.map((stock) => {
                 const furnitureService = FurnitureService.getInstance();
                 const furniture = furnitureService.getFurnitureById(stock.furniture_id);
