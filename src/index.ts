@@ -149,7 +149,7 @@ function consoleMenu() {
       type: "list",
       name: "command",
       message: "Choose option",
-      choices: ["Show stock"],
+      choices: ["Show stock", "Quit"],
     })
     .then(async (answers) => {
       switch (answers["command"]) {
@@ -162,6 +162,8 @@ function consoleMenu() {
           break;
         case "Back":
           consoleMenu(); // Vuelve al menú principal
+          break;
+        case "Quit":
           break;
       }
     });
