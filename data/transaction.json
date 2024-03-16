@@ -1,0 +1,101 @@
+[
+  {
+    "id": 2,
+    "date": "2024-03-15T21:50:43.145Z",
+    "items": [
+      {
+        "id": 1,
+        "name": "SKOGSTA",
+        "description": "Wooden table",
+        "dimensions": "100x100x100",
+        "material": "Wood",
+        "price": 100,
+        "type": "Table"
+      },
+      {
+        "id": 2,
+        "name": "INGATORP",
+        "description": "Wooden table",
+        "dimensions": "120x120x100",
+        "material": "Wood and metal",
+        "price": 170,
+        "type": "Table"
+      }
+    ],
+    "total": 270,
+    "supplierId": 3,
+    "type": "purchase"
+  },
+  {
+    "id": 1,
+    "date": "2023-03-15T21:50:43.145Z",
+    "items": [
+      {
+        "id": 1,
+        "name": "SKOGSTA",
+        "description": "Wooden table",
+        "dimensions": "100x100x100",
+        "material": "Wood",
+        "price": 100,
+        "type": "Table"
+      }
+    ],
+    "total": 100,
+    "clientId": 1,
+    "type": "sale"
+  },
+  {
+    "id": 3,
+    "date": "2023-06-15T21:50:43.145Z",
+    "items": [
+      {
+        "id": 1,
+        "name": "SKOGSTA",
+        "description": "Wooden table",
+        "dimensions": "100x100x100",
+        "material": "Wood",
+        "price": 100,
+        "type": "Table"
+      },
+      {
+        "id": 1,
+        "name": "SKOGSTA",
+        "description": "Wooden table",
+        "dimensions": "100x100x100",
+        "material": "Wood",
+        "price": 100,
+        "type": "Table"
+      }
+    ],
+    "total": 200,
+    "clientId": 2,
+    "type": "sale"
+  },
+  {
+    "id": 5,
+    "date": "2022-03-15T21:50:43.145Z",
+    "items": [
+      {
+        "id": 1,
+        "name": "SKOGSTA",
+        "description": "Wooden table",
+        "dimensions": "100x100x100",
+        "material": "Wood",
+        "price": 100,
+        "type": "Table"
+      },
+      {
+        "id": 2,
+        "name": "INGATORP",
+        "description": "Wooden table",
+        "dimensions": "120x120x100",
+        "material": "Wood and metal",
+        "price": 170,
+        "type": "Table"
+      }
+    ],
+    "total": 270,
+    "supplierId": 1,
+    "type": "purchase"
+  }
+]

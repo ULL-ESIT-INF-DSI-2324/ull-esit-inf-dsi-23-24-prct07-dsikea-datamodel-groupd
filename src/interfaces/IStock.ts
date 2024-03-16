@@ -4,4 +4,5 @@
 export interface IStock {
   furniture_id: number;
   quantity: number;
+  category: string;
 }

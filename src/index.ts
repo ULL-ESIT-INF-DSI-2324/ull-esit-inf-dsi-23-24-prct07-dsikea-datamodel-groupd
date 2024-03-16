@@ -142,39 +142,105 @@ const stock = new Stock();
 // 1. Agregar un nuevo al stock
 // 2. Reducir el stock
 // 3. Mostrar el stock
-function consoleMenu() {
-  console.clear();
-  inquirer
-    .prompt({
-      type: "list",
-      name: "command",
-      message: "Choose option",
-      choices: ["Show stock", "Quit"],
-    })
-    .then(async (answers) => {
-      switch (answers["command"]) {
-        case "Show stock":
-          // Llama a la función stock.getStock() para mostrar el stock
-          await stock.getStock();
-          // Espera un input del usuario antes de continuar
-          await waitForInput();
-          consoleMenu(); // Vuelve al menú principal
-          break;
-        case "Back":
-          consoleMenu(); // Vuelve al menú principal
-          break;
-        case "Quit":
-          break;
-      }
-    });
-}
+// function consoleMenu() {
+//   console.clear();
+//   inquirer
+//     .prompt({
+//       type: "list",
+//       name: "command",
+//       message: "Choose option",
+//       choices: ["Show stock", "Quit"],
+//     })
+//     .then(async (answers) => {
+//       switch (answers["command"]) {
+//         case "Show stock":
+//           // Llama a la función stock.getStock() para mostrar el stock
+//           await stock.getAllStock();
+//           // Espera un input del usuario antes de continuar
+//           await waitForInput();
+//           consoleMenu(); // Vuelve al menú principal
+//           break;
+//         case "Back":
+//           consoleMenu(); // Vuelve al menú principal
+//           break;
+//         case "Quit":
+//           break;
+//       }
+//     });
+// }
 
-async function waitForInput() {
-  await inquirer.prompt({
-    type: "input",
-    name: "continue",
-    message: "Press enter to continue",
-  });
-}
+// async function waitForInput() {
+//   await inquirer.prompt({
+//     type: "input",
+//     name: "continue",
+//     message: "Press enter to continue",
+//   });
+// }
 
-consoleMenu();
+// consoleMenu();
+
+// -------------------------- PRUEBAS REPORT SERVICE --------------------------
+
+import { stockByCategory } from "./database/ReportService.ts/stockByCategory.js";
+import { stockByFurnitureID } from "./database/ReportService.ts/stockByFurnitureID.js";
+import { bestSellingFurniture } from "./database/ReportService.ts/bestSellingFurniture.js";
+import { totalBillingClients } from "./database/ReportService.ts/totalBillingClients.js";
+import { totalBillingSuppliers } from "./database/ReportService.ts/totalBillingSupliers.js";
+import { totalBillingClientsByYear } from "./database/ReportService.ts/totalBillingClientsByYear.js";
+import { totalBillingSuppliersByYear } from "./database/ReportService.ts/totalBillingSuppliersByYear.js";
+import { totalBillingByAClient } from "./database/ReportService.ts/totalBillingByAClient.js";
+import { totalBillingByASupplier } from "./database/ReportService.ts/totalBillingByASupplier.js";
+// DEBERÍA AÑADIRSE EL STOCK EN LA CLASE STOCK
+const servicioStock = StockService.getInstance();
+// servicioStock.addStock(1, 10, "Mesa");
+// servicioStock.addStock(2, 10, "Silla");
+// servicioStock.addStock(3, 10, "Mesa nocturna");
+
+let report = new stockByCategory();
+await report.generateReport("Table");
+report = new stockByFurnitureID();
+await report.generateReport("1");
+await report.generateReport("100");
+await report.generateReport("2");
+
+// EMPEZAR A CLEAR TRANSACCIONES
+import { TransactionService } from "./database/TransactionService.js";
+import { ITransaction, IClientTransaction, ISupplierTransaction } from "./interfaces/ITransaction.js";
+
+// const transactionService = TransactionService.getInstance();
+// const  transaccion1 : IClientTransaction = {id: 1, date: new Date(), items: [furnitureService.getFurnitureById(1), furnitureService.getFurnitureById(2)], total: 270, clientId: 1, type: "sale"};
+// const transaccion2 : ISupplierTransaction = {id: 2, date: new Date(), items: [furnitureService.getFurnitureById(1), furnitureService.getFurnitureById(2)], total: 270, supplierId: 1, type: "purchase"};
+// transactionService.addTransaction(transaccion1);
+// transactionService.addTransaction(transaccion2);
+
+const report1 = new bestSellingFurniture();
+await report1.generateReport();
+
+let report2 = new totalBillingClients();
+await report2.generateReport();
+report2 = new totalBillingSuppliers();
+await report2.generateReport();
+let report3 = new totalBillingClientsByYear();
+await report3.generateReport("2023");
+await report3.generateReport("2024");
+report3 = new totalBillingSuppliersByYear();
+await report3.generateReport("2023");
+await report3.generateReport("2024");
+await report3.generateReport("2022");
+// Añadimos al cliente 1 y 2
+import { ClientService } from "./database/ClientsService.js";
+// const cliente1 = {id: 1, name: "Cliente1", address: "Address1", contact: "1234567890"};
+// const cliente2 = {id: 2, name: "Cliente2", address: "Address2", contact: "123456"};
+// const clienteService = new ClientService();
+// await clienteService.addClient(cliente1);
+// await clienteService.addClient(cliente2);
+
+let report4 = new totalBillingByAClient();
+await report4.generateReport("1");
+await report4.generateReport("2");
+await report4.generateReport("3");
+
+report4 = new totalBillingByASupplier();
+await report4.generateReport("1");
+await report4.generateReport("2");
+await report4.generateReport("3");

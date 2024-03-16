@@ -1,5 +1,42 @@
 [
   {
+    "id": 1,
+    "name": "SKOGSTA",
+    "description": "Wooden table",
+    "dimensions": "100x100x100",
+    "material": "Wood",
+    "price": 100,
+    "type": "Table"
+
+  },
+  {
+    "id": 2,
+    "name": "INGATORP",
+    "description": "Wooden table",
+    "dimensions": "120x120x100",
+    "material": "Wood and metal",
+    "price": 170,
+    "type": "Table"
+  },
+  {
+    "id": 4,
+    "name": "Table4",
+    "description": "Wooden table",
+    "dimensions": "100x100x100",
+    "material": "Wood",
+    "price": 100,
+    "type": "test"
+  },
+  {
+    "id": 5,
+    "name": "Table5",
+    "description": "Wooden table",
+    "dimensions": "100x100x100",
+    "material": "Wood",
+    "price": 120,
+    "type": "test"
+  },
+  {
     "id": 6,
     "name": "Table5",
     "description": "Wooden table",

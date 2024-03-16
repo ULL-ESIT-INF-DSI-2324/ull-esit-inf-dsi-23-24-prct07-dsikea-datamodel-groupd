@@ -11,7 +11,7 @@ export class Stock {
     /**
      * Retrieves the stock data and displays it in a table format.
      */
-    public async getStock() {
+    public async getAllStock() {
         const stockData = this.stockService.getCollection();
         // Creamos objetos que contengan id del mueble, nombre del mueble y cantidad en stock
         await stockData.then((stock) => {
@@ -23,4 +23,5 @@ export class Stock {
             console.table(tableData);
         });
     }
+    // Transacciónes de compra y venta
 }

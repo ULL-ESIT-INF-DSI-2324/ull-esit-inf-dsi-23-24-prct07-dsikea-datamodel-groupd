@@ -1,6 +1,12 @@
 [
   {
-    "furniture_id": 3,
-    "quantity": 45
+    "furniture_id": 1,
+    "quantity": 10,
+    "category": "Table"
+  },
+  {
+    "furniture_id": 2,
+    "quantity": 15,
+    "category": "Table"
   }
 ]
