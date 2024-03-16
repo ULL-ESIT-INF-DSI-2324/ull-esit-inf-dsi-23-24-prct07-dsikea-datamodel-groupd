@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha",
+    "test": "set DB_PATH=./tests/data/ && mocha",
     "coverage": "c8 npm test && c8 report --reporter=lcov",
     "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
     "build": "tsc -p .",

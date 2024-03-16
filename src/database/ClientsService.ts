@@ -10,7 +10,9 @@ export class ClientService {
   private clientDB: Low<IClient[]>;
 
   constructor() {
-    this.clientDB = new Low(new JSONFile("./data/client.json"), []);
+    const dbPath = (process.env.DB_PATH || "./data/").trim();
+    console.log(dbPath+"client.json");
+    this.clientDB = new Low(new JSONFile(`${dbPath}client.json`), []);
     this.initCollection();
   }
 

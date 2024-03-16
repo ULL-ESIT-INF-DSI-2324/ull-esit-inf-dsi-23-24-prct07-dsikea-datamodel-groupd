@@ -10,7 +10,8 @@ export class FurnitureService {
   private furnitureDB: Low<IFurniture[]>;
 
   constructor() {
-    this.furnitureDB = new Low(new JSONFile("./data/furniture.json"), []);
+    const dbPath = (process.env.DB_PATH || "./data/").trim();
+    this.furnitureDB = new Low(new JSONFile(`${dbPath}furniture.json`), []);
     this.initCollection();
   }
 

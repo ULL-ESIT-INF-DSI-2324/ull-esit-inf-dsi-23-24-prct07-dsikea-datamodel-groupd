@@ -2,7 +2,7 @@ import { ReportService } from "./ReportService.js";
 import { IFurniture } from "../../interfaces/IFurniture.js";
 
 /**
- * Represents a class that generates a report of the best selling furniture.
+ * Represents a class that generates a report of the best-selling furniture.
  * @extends ReportService
  */
 export class bestSellingFurniture extends ReportService {
@@ -11,7 +11,7 @@ export class bestSellingFurniture extends ReportService {
   }
 
   /**
-   * Generates the report data for the best selling furniture.
+   * Generates the report data for the best-selling furniture.
    * @returns A promise that resolves when the report data is generated.
    */
   public async generateReportData(): Promise<void> {
@@ -32,8 +32,8 @@ export class bestSellingFurniture extends ReportService {
   }
 
   /**
-   * Retrieves the data for the best selling furniture.
-   * @returns A promise that resolves with an array of IFurniture objects representing the best selling furniture.
+   * Retrieves the data for the best-selling furniture.
+   * @returns A promise that resolves with an array of IFurniture objects representing the best-selling furniture.
    * @throws An error if there are no transactions.
    */
   public async getData(): Promise<Array<IFurniture>> {

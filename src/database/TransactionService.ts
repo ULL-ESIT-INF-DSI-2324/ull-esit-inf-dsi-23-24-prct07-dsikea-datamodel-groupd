@@ -10,7 +10,8 @@ export class TransactionService {
   private transactionDB: Low<TransactionType[]>;
 
   constructor() {
-    this.transactionDB = new Low(new JSONFile("./data/transaction.json"), []);
+    const dbPath = (process.env.DB_PATH || "./data/").trim();
+    this.transactionDB = new Low(new JSONFile(`${dbPath}transaction.json`), []);
     this.initCollection();
   }
 

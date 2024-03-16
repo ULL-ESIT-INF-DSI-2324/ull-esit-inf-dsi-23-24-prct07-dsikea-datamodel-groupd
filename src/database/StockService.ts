@@ -10,7 +10,9 @@ export class StockService {
   private stockDB: Low<IStock[]>;
 
   constructor() {
-    this.stockDB = new Low(new JSONFile("./data/stock.json"), []);
+    const dbPath = (process.env.DB_PATH || "./data/").trim();
+    this.stockDB = new Low(new JSONFile(`${dbPath}stock.json`), []);
+    this.initCollection();
   }
 
   /**

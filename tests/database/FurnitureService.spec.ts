@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { FurnitureService } from "../../src/database/FurnitureService.js";
-import { IFurniture } from "../../src/interfaces/IFurniture";
+import { IFurniture } from "../../src/interfaces/IFurniture.js";
 
 describe("FurnitureService", () => {
   const furnitureService: FurnitureService = FurnitureService.getInstance();
@@ -11,6 +11,7 @@ describe("FurnitureService", () => {
     dimensions: "100x100x100",
     material: "Wood",
     price: 100,
+    type: "Table",
   };
 
   it("should get the collection of furniture", async () => {

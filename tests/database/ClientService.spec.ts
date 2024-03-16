@@ -1,18 +1,8 @@
 import { expect } from "chai";
-// import { add } from "../src/index.js";
-import {ClientService} from "../src/database/ClientsService.js";
-import {IClient} from "../src/interfaces/IClient.js";
+import {ClientService} from "../../src/database/ClientsService.js";
+import {IClient} from "../../src/interfaces/IClient.js";
 
-// describe("Test", () => {
-//   it("should return 3", () => {
-//     expect(add(1, 2)).to.equal(3);
-//   });
-//   it("should return 5", () => {
-//     expect(add(2, 3)).to.equal(5);
-//   });
-// });
-
-describe("Test", () => {
+describe("Client Service Tests", () => {
   const clientService = ClientService.getInstance();
 
   it("should create a new client", async () => {
@@ -25,5 +15,10 @@ describe("Test", () => {
     await clientService.addClient(client);
     const clients = await clientService.getCollection();
     expect(clients).to.deep.include(client);
+  });
+
+  it("should get the collection of clients", async () => {
+    const collection = await clientService.getCollection();
+    expect(collection).to.be.an("array");
   });
 });

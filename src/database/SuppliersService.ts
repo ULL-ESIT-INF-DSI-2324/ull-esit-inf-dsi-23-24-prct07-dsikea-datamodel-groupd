@@ -10,7 +10,8 @@ export class SupplierService {
   private SupplierDB: Low<ISupplier[]>;
 
   constructor() {
-    this.SupplierDB = new Low(new JSONFile("./data/supplier.json"), []);
+    const dbPath = (process.env.DB_PATH || "./data/").trim();
+    this.SupplierDB = new Low(new JSONFile(`${dbPath}supplier.json`), []);
     this.initCollection();
   }
 
