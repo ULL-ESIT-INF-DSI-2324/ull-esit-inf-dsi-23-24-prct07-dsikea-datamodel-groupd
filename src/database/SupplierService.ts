@@ -65,15 +65,15 @@ export class SupplierService {
   public async addSupplier(supplier: ISupplier): Promise<void> {
     await this.SupplierDB.read();
     // Check if the Supplier already exists
-    const exists = this.SupplierDB.data.find((f) => f === supplier);
+    const exists = this.SupplierDB.data.find((f) =>
+      f.name === supplier.name && f.contact === supplier.contact && f.address === supplier.address
+    );
     if (exists) {
       throw new Error("Supplier already exists");
     }
 
     // Check if the Supplier id or name already exists
-    const idExists = this.SupplierDB.data.find(
-      (f) => f.id === supplier.id || f.name === supplier.name,
-    );
+    const idExists = this.SupplierDB.data.filter((f) => f.id === supplier.id).length > 0;
     if (idExists) {
       throw new Error("Supplier id already exists");
     }
@@ -132,20 +132,20 @@ export class SupplierService {
   }
 
   /**
-   * @method getSupplierByContact - Method to get a Supplier from the collection by contact (partial match)
+   * @method getSuppliersByContact - Method to get a Supplier from the collection by contact (partial match)
    * @param contact {string} - The contact of the Supplier to get
    * @returns {ISupplier[]} - Furnitures that match the contact
    */
-  public getSupplierByContact(contact: string): ISupplier[] {
+  public getSuppliersByContact(contact: string): ISupplier[] {
     return this.SupplierDB.data.filter((f) => f.contact.includes(contact));
   }
 
   /**
-   * @method getSupplierByAddress - Method to get a Supplier from the collection by address (partial match)
+   * @method getSuppliersByAddress - Method to get a Supplier from the collection by address (partial match)
    * @param address {string} - The address of the Supplier to get
    * @returns {ISupplier[]} - Furnitures that match the address
    */
-  public getSupplierByAddress(address: string): ISupplier[] {
+  public getSuppliersByAddress(address: string): ISupplier[] {
     return this.SupplierDB.data.filter((f) => f.address.includes(address));
   }
 }

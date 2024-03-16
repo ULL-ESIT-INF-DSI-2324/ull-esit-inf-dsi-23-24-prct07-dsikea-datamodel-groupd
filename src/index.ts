@@ -99,7 +99,7 @@ const furniture2: IFurniture = {
 // console.log("Furniture collection: ", await furnitureService.getCollection());
 
 // Test add supplier
-import { SupplierService } from "./database/SuppliersService.js";
+import { SupplierService } from "./database/SupplierService.js";
 import { ISupplier } from "./interfaces/ISupplier.js";
 import { StockService } from "./database/StockService.js";
 // const supplierService = SupplierService.getInstance();

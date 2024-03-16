@@ -113,34 +113,38 @@ export class TransactionService {
   }
 
   /**
-   * @method getTransactionsByDate - Method to get the transactions by date
+   * @method getTransactionsByDate - Method to get the transactions by date (Check only the date, not the time)
    * @param date {Date} - The date to get the transactions
-   * @returns {Promise<TransactionType[]>} - A promise that resolves with the transactions by date
+   * @returns {TransactionType[]} - The transactions that match the date
    */
-  public async getTransactionsByDate(date: Date): Promise<TransactionType[]> {
-    await this.transactionDB.read();
-    return this.transactionDB.data.filter((t) => t.date === date);
+  public getTransactionsByDate(date: Date): TransactionType[] {
+    return this.transactionDB.data.filter((t) => {
+      const transactionDate = new Date(t.date);
+      return (
+        transactionDate.getDate() === date.getDate() &&
+        transactionDate.getMonth() === date.getMonth() &&
+        transactionDate.getFullYear() === date.getFullYear()
+      );
+    });
   }
 
   /**
    * @method getTransactionsByType - Method to get the transactions by type
    * @param type {string} - The type to get the transactions
-   * @returns {Promise<TransactionType[]>} - A promise that resolves with the transactions by type
+   * @returns {TransactionType[]} - The transactions that match the type
    */
-  public async getTransactionsByType(type: string): Promise<TransactionType[]> {
-    await this.transactionDB.read();
+  public getTransactionsByType(type: string): TransactionType[] {
     return this.transactionDB.data.filter((t) => t.type === type);
   }
 
   /**
    * @method getTransactionsByTotal - Method to get the transactions by total
    * @param total {number} - The total to get the transactions
-   * @returns {Promise<TransactionType[]>} - A promise that resolves with the transactions by total
+   * @returns {TransactionType[]} -The transactions that match the total
    */
-  public async getTransactionsByTotal(
+  public getTransactionsByTotal(
     total: number,
-  ): Promise<TransactionType[]> {
-    await this.transactionDB.read();
+  ): TransactionType[] {
     return this.transactionDB.data.filter((t) => t.total === total);
   }
 

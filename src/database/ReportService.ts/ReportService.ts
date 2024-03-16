@@ -1,5 +1,5 @@
 import { ClientService } from "../ClientsService.js";
-import { SupplierService } from "../SuppliersService.js";
+import { SupplierService } from "../SupplierService.js";
 import { FurnitureService } from "../FurnitureService.js";
 import { StockService } from "../StockService.js";
 import { TransactionService } from "../TransactionService.js";
