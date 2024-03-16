@@ -281,3 +281,7 @@ const report10 = new totalBillingSuppliersByYear();
 await report10.generateReport("2023");
 await report10.generateReport("2024");
 await report10.generateReport("2022");
+
+console.log("-------------------------------------");
+const report100 = new bestSellingFurniture();
+await report100.generateReport();

@@ -7,5 +7,32 @@
     "material": "Wood",
     "price": 100,
     "type": "Table"
+  },
+  {
+    "id": 1,
+    "name": "Mesa",
+    "description": "Mesa de madera",
+    "price": 100,
+    "material": "Madera",
+    "dimensions": "100x100x100",
+    "type": "Table"
+  },
+  {
+    "id": 2,
+    "name": "Silla",
+    "description": "Silla de madera",
+    "price": 170,
+    "material": "Madera",
+    "dimensions": "100x100x100",
+    "type": "Chair"
+  },
+  {
+    "id": 3,
+    "name": "Sofa",
+    "description": "Sofa de madera",
+    "price": 200,
+    "material": "Madera",
+    "dimensions": "100x100x100",
+    "type": "Sofa"
   }
 ]
