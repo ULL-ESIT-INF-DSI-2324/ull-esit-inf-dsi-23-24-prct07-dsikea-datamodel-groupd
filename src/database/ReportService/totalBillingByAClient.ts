@@ -17,51 +17,46 @@ export class totalBillingByAClient extends ReportService {
    */
   public async generateReportData(clientID: string): Promise<void> {
     try {
-      await this.getData(clientID);
+      const clientData = await this.getData(clientID);
+      let totalBilling = 0;
+      clientData.forEach((transaction) => {
+        totalBilling += transaction.total;
+      });
+      console.log("Facturación total del cliente ", clientID, ": ", totalBilling);
     } catch (error) {
-      console.log("Error no se ha realizado ninguna transacción" + error);
+      console.log("Error: " + error);
     }
   }
 
   /**
    * Retrieves the transaction data for a specific client.
    * @param clientID - The ID of the client. (optional)
-   * @returns An array of transactions for the client.
+   * @returns An array of transactions of the client.
    * @throws Error if there are no transactions or no client is specified.
    */
   public async getData(clientID?: string): Promise<Array<ITransaction>> {
     // Obtener todas las transacciones de los clientes en un periodo de tiempo
     const clientData = await this.transactionService.getCollection();
-    if (clientData.length === 0 || clientID === undefined) {
+    if (clientData.length === 0 || clientID === undefined || this.clientService.getClientById(parseInt(clientID, 10)) === undefined){
       throw new Error(
-        "No hay transacciones o no se ha especificado un cliente",
+        "No hay transacciones o el cliente no existe",
       );
     } else {
-      // Comprobamos que el cliente sea correcto
       const clientNumber = parseInt(clientID, 10);
       if (isNaN(clientNumber)) {
         throw new Error("El cliente no es válido");
       } else {
-        // Vamos viendo cada transacción y si es de tipo venta y está en el año que queremos, sumamos el total
-        let totalBilling = 0;
+        const clientBills: Array<ITransaction> = [];
         clientData.forEach((transaction) => {
           if (
             transaction.type === "sale" &&
             transaction.clientId === clientNumber
           ) {
-            totalBilling += transaction.total;
+            clientBills.push(transaction);
           }
         });
-        console.log(
-          "Facturación total del cliente ",
-          clientID,
-          "con nombre: ",
-          this.clientService.getClientById(clientNumber).name,
-          ": ",
-          totalBilling,
-        );
+        return clientBills;
       }
     }
-    return clientData;
   }
 }

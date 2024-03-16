@@ -44,15 +44,15 @@ export class stockByFurnitureID extends ReportService {
   public async getData(furniture_id?: string): Promise<Array<IStock>> {
     const stockData = this.stockService.getCollection();
     return await stockData.then((stock) => {
-      const tableData = stock.filter(
+      const Data = stock.filter(
         (item) => item.furniture_id === parseInt(furniture_id as string, 10),
       );
-      if (tableData.length === 0) {
+      if (Data.length === 0) {
         throw new Error(
           "No se ha encontrado el mueble con el id: " + furniture_id,
         );
       }
-      return tableData;
+      return Data;
     });
   }
 }

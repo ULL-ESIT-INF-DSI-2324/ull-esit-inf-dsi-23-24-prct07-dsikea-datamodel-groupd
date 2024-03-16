@@ -178,15 +178,15 @@ const stock = new Stock();
 
 // -------------------------- PRUEBAS REPORT SERVICE --------------------------
 
-import { stockByCategory } from "./database/ReportService.ts/stockByCategory.js";
-import { stockByFurnitureID } from "./database/ReportService.ts/stockByFurnitureID.js";
-import { bestSellingFurniture } from "./database/ReportService.ts/bestSellingFurniture.js";
-import { totalBillingClients } from "./database/ReportService.ts/totalBillingClients.js";
-import { totalBillingSuppliers } from "./database/ReportService.ts/totalBillingSupliers.js";
-import { totalBillingClientsByYear } from "./database/ReportService.ts/totalBillingClientsByYear.js";
-import { totalBillingSuppliersByYear } from "./database/ReportService.ts/totalBillingSuppliersByYear.js";
-import { totalBillingByAClient } from "./database/ReportService.ts/totalBillingByAClient.js";
-import { totalBillingByASupplier } from "./database/ReportService.ts/totalBillingByASupplier.js";
+import { stockByCategory } from "./database/ReportService/stockByCategory.js";
+import { stockByFurnitureID } from "./database/ReportService/stockByFurnitureID.js";
+import { bestSellingFurniture } from "./database/ReportService/bestSellingFurniture.js";
+import { totalBillingClients } from "./database/ReportService/totalBillingClients.js";
+import { totalBillingSuppliers } from "./database/ReportService/totalBillingSuppliers.js";
+import { totalBillingClientsByYear } from "./database/ReportService/totalBillingClientsByYear.js";
+import { totalBillingSuppliersByYear } from "./database/ReportService/totalBillingSuppliersByYear.js";
+import { totalBillingByAClient } from "./database/ReportService/totalBillingByAClient.js";
+import { totalBillingByASupplier } from "./database/ReportService/totalBillingByASupplier.js";
 // DEBERÍA AÑADIRSE EL STOCK EN LA CLASE STOCK
 const servicioStock = StockService.getInstance();
 // servicioStock.addStock(1, 10, "Mesa");
@@ -245,3 +245,39 @@ report4 = new totalBillingByASupplier();
 await report4.generateReport("1");
 await report4.generateReport("2");
 await report4.generateReport("3");
+
+console.log("------------------------------------");
+const report5 = new totalBillingByAClient();
+await report5.generateReport("1");
+await report5.generateReport("2");
+await report5.generateReport("3");
+await report5.generateReport("4");
+await report5.generateReport("5");
+
+console.log("------------------------------------");
+const report6 = new totalBillingByASupplier();
+await report6.generateReport("1");
+await report6.generateReport("2");
+await report6.generateReport("3");
+await report6.generateReport("4");
+await report6.generateReport("5");
+
+console.log("------------------------------------");
+const report7 = new totalBillingClients();
+await report7.generateReport();
+
+console.log("------------------------------------");
+const report8 = new totalBillingSuppliers();
+await report8.generateReport();
+
+console.log("------------------------------------");
+const report9 = new totalBillingClientsByYear();
+await report9.generateReport("2023");
+await report9.generateReport("2024");
+await report9.generateReport("2022");
+
+console.log("------------------------------------");
+const report10 = new totalBillingSuppliersByYear();
+await report10.generateReport("2023");
+await report10.generateReport("2024");
+await report10.generateReport("2022");

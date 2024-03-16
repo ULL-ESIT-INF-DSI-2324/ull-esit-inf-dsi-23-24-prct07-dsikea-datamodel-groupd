@@ -20,32 +20,34 @@ export class totalBillingClients extends ReportService {
    */
   public async generateReportData(): Promise<void> {
     try {
-      await this.getData();
+      const billingClients = await this.getData();
+      let totalBilling = 0;
+      billingClients.forEach((transaction) => {
+        totalBilling += transaction.total;
+      });
+      console.log("Facturación total de los clientes: ", totalBilling);
     } catch (error) {
       console.log("Error no se ha realizado ninguna transacción");
     }
   }
 
   /**
-   * Retrieves the transaction data and calculates the total billing of clients.
+   * Retrieves the transaction data, filtering by type "sale".
    * @returns A promise that resolves with an array of transactions.
    * @throws An error if there are no transactions.
    */
   public async getData(): Promise<Array<ITransaction>> {
-    // Obtener la suma de todas las ventas de cada cliente
     const clientData = await this.transactionService.getCollection();
     if (clientData.length === 0) {
       throw new Error("No hay transacciones");
     } else {
-      // Ir sumando el apartado de total de todas las transacciones que sean de tipo venta
-      let totalBilling = 0;
+      const billingClients: Array<ITransaction> = [];
       clientData.forEach((transaction) => {
         if (transaction.type === "sale") {
-          totalBilling += transaction.total;
+          billingClients.push(transaction);
         }
       });
-      console.log("Facturación total de los clientes: ", totalBilling);
-      return clientData;
+      return billingClients;
     }
   }
 }

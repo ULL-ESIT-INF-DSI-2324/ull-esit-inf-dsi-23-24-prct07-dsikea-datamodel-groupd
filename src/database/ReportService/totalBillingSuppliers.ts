@@ -16,32 +16,34 @@ export class totalBillingSuppliers extends ReportService {
    */
   public async generateReportData(): Promise<void> {
     try {
-      await this.getData();
+      const billingSuppliers = await this.getData();
+      let totalBilling = 0;
+      billingSuppliers.forEach((transaction) => {
+        totalBilling += transaction.total;
+      });
+      console.log("Gastos totales en los proveedores: ", totalBilling);
     } catch (error) {
       console.log("Error no se ha realizado ninguna transacción");
     }
   }
 
   /**
-   * Retrieves the transaction data and calculates the total billing for suppliers.
+   * Retrieves the transaction data and returns an array of transactions filtered by "purchase".
    * @returns A promise that resolves with an array of transactions.
    * @throws An error if there are no transactions.
    */
   public async getData(): Promise<Array<ITransaction>> {
-    // Obtener la suma de todas las compras a cada proveedor
     const supplierData = await this.transactionService.getCollection();
     if (supplierData.length === 0) {
       throw new Error("No hay transacciones");
     } else {
-      // Ir sumando el apartado de total de todas las transacciones que sean de tipo compra
-      let totalBilling = 0;
+      const billingSupliers: Array<ITransaction> = [];
       supplierData.forEach((transaction) => {
         if (transaction.type === "purchase") {
-          totalBilling += transaction.total;
+          billingSupliers.push(transaction);
         }
       });
-      console.log("Gastos totales en los proveedores: ", totalBilling);
-      return supplierData;
+      return billingSupliers;
     }
   }
 }
