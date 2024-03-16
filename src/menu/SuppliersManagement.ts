@@ -27,10 +27,13 @@ export function SuppliersManagement() {
           break;
         case SuppliersMenu.Add:
           promptAdd("Enter the name of the supplier");
+          SuppliersManagement();
           break;
         case SuppliersMenu.Buy:
+          SuppliersManagement();
           break;
         case SuppliersMenu.Devolution:
+          SuppliersManagement();
           break;
         case SuppliersMenu.Quit:
           consoleMenu();

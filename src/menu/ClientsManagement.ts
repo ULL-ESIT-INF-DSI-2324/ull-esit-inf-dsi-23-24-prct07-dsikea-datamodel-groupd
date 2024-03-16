@@ -26,8 +26,11 @@ export function ClientsManagement() {
           break;
         case ClientsMenu.Add:
           promptAdd("Enter the name of the client");
+          
+          ClientsManagement();
           break;
         case ClientsMenu.ShowHistory:
+          ClientsManagement();
           break;
         case ClientsMenu.Quit:
           consoleMenu();

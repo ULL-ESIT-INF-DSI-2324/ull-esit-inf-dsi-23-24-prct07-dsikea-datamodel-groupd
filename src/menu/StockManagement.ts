@@ -27,10 +27,13 @@ export function StockManagement() {
           break;
         case StockMenu.Add:
           promptAdd("Enter the name of the furniture");
+          StockManagement();
           break;
         case StockMenu.Sell:
+          StockManagement();
           break;
         case StockMenu.Devolution:
+          StockManagement();
           break;
         case StockMenu.Quit:
           consoleMenu();
