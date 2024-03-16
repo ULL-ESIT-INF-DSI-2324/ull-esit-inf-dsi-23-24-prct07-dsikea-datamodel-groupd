@@ -63,18 +63,16 @@ export class StockService {
    * @returns {Promise<void>} - A promise that resolves when the stock is added to the collection
    */
   public async addStock(
-    furniture_id: number,
-    quantity: number,
-    category: string,
+    stock: IStock
   ): Promise<void> {
     await this.stockDB.read();
-    const stock = this.stockDB.data.find(
-      (f) => f.furniture_id === furniture_id,
+    const stockObject = this.stockDB.data.find(
+      (f) => f.furniture_id === stock.furniture_id,
     );
-    if (stock) {
-      stock.quantity += quantity;
+    if (stockObject) {
+      stockObject.quantity += stock.quantity;
     } else {
-      this.stockDB.data.push({ furniture_id, quantity, category });
+      this.stockDB.data.push(stock);
     }
     await this.stockDB.write();
   }

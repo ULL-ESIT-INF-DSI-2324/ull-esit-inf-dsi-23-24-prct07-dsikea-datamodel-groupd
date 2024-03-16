@@ -1,20 +1,14 @@
 [
   {
-    "id": 1,
-    "name": "Supplier1",
-    "address": "Address1",
-    "contact": "1234567890"
-  },
-  {
     "id": 2,
-    "name": "Supplier2",
-    "address": "Address2",
-    "contact": "1234567890"
+    "name": "John",
+    "contact": "12345678900",
+    "address": "123"
   },
   {
     "id": 3,
-    "name": "Supplier1",
-    "address": "Address3",
-    "contact": "1234567890"
+    "name": "Jon Doe Doe",
+    "contact": "234567890",
+    "address": "123 Street"
   }
 ]

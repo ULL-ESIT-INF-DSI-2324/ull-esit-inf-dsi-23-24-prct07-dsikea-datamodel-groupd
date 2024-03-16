@@ -65,4 +65,30 @@ describe("Transaction Service Tests", () => {
     expect(transactions[0]).to.have.property("total", 200);
   });
 
+  it("should remove a transaction from the collection", async () => {
+    await transactionService.removeTransaction(1);
+    const transactions = transactionService.getCollection
+    expect(transactions).to.be.an("array").length(0);
+  });
+
+  it("should throw an error when getting a transaction by id", () => {
+    expect(() => transactionService.getTransactionById(1)).to.throw(
+      "transaction not found"
+    );
+  });
+
+  it("should throw an error when updating a transaction that not exists", async () => {
+    const transaction: TransactionType = {
+      id: 1,
+      clientId: 1,
+      total: 200,
+      items: [],
+      date: new Date(),
+      type: "sale",
+    };
+    expect(() => transactionService.updateTransaction(transaction)).to.throw(
+      "transaction not found"
+    );
+  });
+
 });

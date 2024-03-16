@@ -69,20 +69,6 @@ export class TransactionService {
   }
 
   /**
-   * @method getTransaction - Method to get a transaction from the collection
-   * @param id {number} - The id of the transaction to get
-   * @returns {Promise<TransactionType>} - A promise that resolves with the transaction
-   */
-  public async getTransaction(id: number): Promise<TransactionType> {
-    await this.transactionDB.read();
-    const transaction = this.transactionDB.data.find((t) => t.id === id);
-    if (!transaction) {
-      throw new Error("transaction not found");
-    }
-    return transaction;
-  }
-
-  /**
    * @method updateTransaction - Method to update a transaction in the collection
    * @param transaction {TransactionType} - The transaction to update
    * @returns {Promise<void>} - A promise that resolves when the transaction is updated in the collection
