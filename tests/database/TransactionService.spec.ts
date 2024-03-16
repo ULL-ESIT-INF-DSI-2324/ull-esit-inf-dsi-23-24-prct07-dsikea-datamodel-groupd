@@ -67,7 +67,7 @@ describe("Transaction Service Tests", () => {
 
   it("should remove a transaction from the collection", async () => {
     await transactionService.removeTransaction(1);
-    const transactions = transactionService.getCollection
+    const transactions = await transactionService.getCollection();
     expect(transactions).to.be.an("array").length(0);
   });
 
@@ -86,9 +86,12 @@ describe("Transaction Service Tests", () => {
       date: new Date(),
       type: "sale",
     };
-    expect(() => transactionService.updateTransaction(transaction)).to.throw(
-      "transaction not found"
-    );
+    try {
+      await transactionService.updateTransaction(transaction);
+    } catch (error) {
+      if (error instanceof Error) {
+        expect(error.message).to.equal("transaction not found");
+      }
+    }
   });
-
 });

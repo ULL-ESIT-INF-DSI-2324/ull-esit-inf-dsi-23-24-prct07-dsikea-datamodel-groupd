@@ -38,11 +38,12 @@ describe("Stock Service Tests", () => {
 
   it("should get the number of stock of a furniture by id", () => {
     const stock = stockService.getStockNumber(1);
-    expect(stock).to.have.property("furniture_id", 1);
+    expect(stock).to.be.equal(200);
   });
 
   it("should reduce the stock of a furniture by id", async () => {
-    const stock = await stockService.reduceStock(1, 50);
+    await stockService.reduceStock(1, 50);
+    const stock = await stockService.getStockById(1);
     expect(stock).to.have.property("quantity", 150);
   });
 
@@ -51,7 +52,7 @@ describe("Stock Service Tests", () => {
       await stockService.reduceStock(1, 200);
     } catch (error) {
       if (error instanceof Error) {
-        expect(error.message).to.equal("Not enaugth stock");
+        expect(error.message).to.equal("Not enough stock");
       }
     }
   });

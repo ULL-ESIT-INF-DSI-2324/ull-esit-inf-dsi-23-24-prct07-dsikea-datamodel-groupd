@@ -57,6 +57,16 @@ export class StockService {
   }
 
   /**
+   * @method getStockById - Method to get a stock from the collection by id
+   * @param furniture_id {number} - The id of the stock to get
+   * @returns {Promise<IStock | undefined>} - A promise that resolves with the stock or undefined if not found
+   */
+  public async getStockById(furniture_id: number): Promise<IStock | undefined> {
+    await this.stockDB.read();
+    return this.stockDB.data.find((f) => f.furniture_id === furniture_id);
+  }
+
+  /**
    * @method addStock - Method to add a stock to the collection
    * @param furniture_id {number} - The id of the stock to add
    * @param quantity {number} - The quantity of the stock to add
