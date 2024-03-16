@@ -30,7 +30,7 @@ export class stockByFurnitureID extends ReportService {
     } catch (error) {
       console.log(
         "Error no se ha encontrado el mueble con el id: ",
-        furnitureID
+        furnitureID,
       );
     }
   }
@@ -45,11 +45,11 @@ export class stockByFurnitureID extends ReportService {
     const stockData = this.stockService.getCollection();
     return await stockData.then((stock) => {
       const tableData = stock.filter(
-        (item) => item.furniture_id === parseInt(furniture_id as string, 10)
+        (item) => item.furniture_id === parseInt(furniture_id as string, 10),
       );
       if (tableData.length === 0) {
         throw new Error(
-          "No se ha encontrado el mueble con el id: " + furniture_id
+          "No se ha encontrado el mueble con el id: " + furniture_id,
         );
       }
       return tableData;

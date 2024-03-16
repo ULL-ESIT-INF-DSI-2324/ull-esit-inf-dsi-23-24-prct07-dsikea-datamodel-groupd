@@ -58,7 +58,7 @@ export class totalBillingSuppliersByYear extends ReportService {
           "Gastos totales en proveedores en el año ",
           year,
           ": ",
-          totalBilling
+          totalBilling,
         );
       }
     }

@@ -34,7 +34,7 @@ export class totalBillingByASupplier extends ReportService {
     const supplierData = await this.transactionService.getCollection();
     if (supplierData.length === 0 || supplierID === undefined) {
       throw new Error(
-        "No hay transacciones o no se ha especificado un proveedor"
+        "No hay transacciones o no se ha especificado un proveedor",
       );
     } else {
       // Comprobamos que el proveedor sea correcto
@@ -57,7 +57,7 @@ export class totalBillingByASupplier extends ReportService {
           "con nombre: ",
           this.supplierService.getSupplierById(supplierNumber).name,
           ": ",
-          totalBilling
+          totalBilling,
         );
       }
     }

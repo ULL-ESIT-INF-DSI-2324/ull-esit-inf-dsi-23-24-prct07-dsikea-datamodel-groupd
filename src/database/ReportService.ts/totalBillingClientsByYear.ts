@@ -58,7 +58,7 @@ export class totalBillingClientsByYear extends ReportService {
           "Facturación total de los clientes en el año ",
           year,
           ": ",
-          totalBilling
+          totalBilling,
         );
       }
     }

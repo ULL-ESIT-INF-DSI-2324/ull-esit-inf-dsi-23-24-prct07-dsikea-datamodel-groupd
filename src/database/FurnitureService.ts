@@ -16,6 +16,15 @@ export class FurnitureService {
   }
 
   /**
+   * @method removeDatabase - Method to remove the database file
+   * @returns {Promise<void>} - A promise that resolves when the database file is removed
+   */
+  public async removeDatabase(): Promise<void> {
+    this.furnitureDB.data = [];
+    await this.furnitureDB.write();
+  }
+
+  /**
    * @method getInstance - Method to get the instance of the FurnitureService
    * @returns {FurnitureService} - The instance of the FurnitureService
    */
@@ -55,7 +64,15 @@ export class FurnitureService {
   public async addFurniture(furniture: IFurniture): Promise<void> {
     await this.furnitureDB.read();
     // Check if the furniture already exists
-    const exists = this.furnitureDB.data.find((f) => f === furniture);
+    const exists = this.furnitureDB.data.find(
+      (f) =>
+        f.name === furniture.name &&
+        f.type === furniture.type &&
+        f.description === furniture.description &&
+        f.dimensions === furniture.dimensions &&
+        f.material === furniture.material &&
+        f.price === furniture.price,
+    );
     if (exists) {
       throw new Error("Furniture already exists");
     }
@@ -118,13 +135,7 @@ export class FurnitureService {
    * @returns {IFurniture[]} - Furnitures that match the name
    */
   public getFurnituresByName(name: string): IFurniture[] {
-    const furnitures = this.furnitureDB.data.filter((f) =>
-      f.name.includes(name),
-    );
-    if (!furnitures) {
-      throw new Error("Furnitures not found");
-    }
-    return furnitures;
+    return this.furnitureDB.data.filter((f) => f.name.includes(name));
   }
 
   /**
@@ -133,11 +144,7 @@ export class FurnitureService {
    * @returns {IFurniture[]} - Furnitures that match the category
    */
   public getFurnituresByCategory(type: string): IFurniture[] {
-    const furnitures = this.furnitureDB.data.filter((f) => f.type === type);
-    if (!furnitures) {
-      throw new Error("Furnitures not found");
-    }
-    return furnitures;
+    return this.furnitureDB.data.filter((f) => f.type === type);
   }
 
   /**
@@ -146,12 +153,8 @@ export class FurnitureService {
    * @returns {IFurniture[]} - Furnitures that match the description
    */
   public getFurnituresByDescription(description: string): IFurniture[] {
-    const furnitures = this.furnitureDB.data.filter((f) =>
+    return this.furnitureDB.data.filter((f) =>
       f.description.includes(description),
     );
-    if (!furnitures) {
-      throw new Error("Furnitures not found");
-    }
-    return furnitures;
   }
 }

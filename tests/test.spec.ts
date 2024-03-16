@@ -1,7 +1,7 @@
 import { expect } from "chai";
 // import { add } from "../src/index.js";
-import {ClientService} from "../src/database/ClientsService.js";
-import {IClient} from "../src/interfaces/IClient.js";
+import { ClientService } from "../src/database/ClientsService.js";
+import { IClient } from "../src/interfaces/IClient.js";
 
 // describe("Test", () => {
 //   it("should return 3", () => {
@@ -20,8 +20,8 @@ describe("Test", () => {
       id: 1,
       name: "John Doe",
       contact: "1234567890",
-      address: "123 Street"
-    }
+      address: "123 Street",
+    };
     await clientService.addClient(client);
     const clients = await clientService.getCollection();
     expect(clients).to.deep.include(client);

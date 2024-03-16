@@ -57,7 +57,7 @@ export class bestSellingFurniture extends ReportService {
       }
     });
     const sortedSales = new Map(
-      [...totalSales.entries()].sort((a, b) => b[1] - a[1])
+      [...totalSales.entries()].sort((a, b) => b[1] - a[1]),
     );
     const maxSales = sortedSales.values().next().value;
 

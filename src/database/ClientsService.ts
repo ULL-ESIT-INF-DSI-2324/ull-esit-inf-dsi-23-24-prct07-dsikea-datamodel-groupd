@@ -11,9 +11,17 @@ export class ClientService {
 
   constructor() {
     const dbPath = (process.env.DB_PATH || "./data/").trim();
-    console.log(dbPath+"client.json");
     this.clientDB = new Low(new JSONFile(`${dbPath}client.json`), []);
     this.initCollection();
+  }
+
+  /**
+   * @method removeDatabase - Method to remove the database file
+   * @returns {Promise<void>} - A promise that resolves when the database file is removed
+   */
+  public async removeDatabase(): Promise<void> {
+    this.clientDB.data = [];
+    await this.clientDB.write();
   }
 
   /**
@@ -57,7 +65,13 @@ export class ClientService {
   public async addClient(client: IClient): Promise<void> {
     await this.clientDB.read();
     // Check if the client already exists
-    const exists = this.clientDB.data.find((f) => f === client);
+    const exists = this.clientDB.data.find(
+      (f) =>
+        f.id === client.id &&
+        f.name === client.name &&
+        f.contact === client.contact &&
+        f.address === client.address,
+    );
     if (exists) {
       throw new Error("client already exists");
     }
@@ -120,11 +134,7 @@ export class ClientService {
    * @returns {IClient[]} - Clients that match the name
    */
   public getClientsByName(name: string): IClient[] {
-    const clients = this.clientDB.data.filter((f) => f.name.includes(name));
-    if (!clients) {
-      throw new Error("clients not found");
-    }
-    return clients;
+    return this.clientDB.data.filter((f) => f.name.includes(name));
   }
 
   /**
@@ -133,13 +143,7 @@ export class ClientService {
    * @returns {IClient[]} - Clients that match the contact
    */
   public getClientsByContact(contact: string): IClient[] {
-    const clients = this.clientDB.data.filter((f) =>
-      f.contact.includes(contact),
-    );
-    if (!clients) {
-      throw new Error("clients not found");
-    }
-    return clients;
+    return this.clientDB.data.filter((f) => f.contact.includes(contact));
   }
 
   /**
@@ -148,12 +152,6 @@ export class ClientService {
    * @returns {IClient[]} - Clients that match the address
    */
   public getClientsByAddress(address: string): IClient[] {
-    const clients = this.clientDB.data.filter((f) =>
-      f.address.includes(address),
-    );
-    if (!clients) {
-      throw new Error("clients not found");
-    }
-    return clients;
+    return this.clientDB.data.filter((f) => f.address.includes(address));
   }
 }

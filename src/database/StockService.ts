@@ -16,6 +16,15 @@ export class StockService {
   }
 
   /**
+   * @method removeDatabase - Method to remove the database file
+   * @returns {Promise<void>} - A promise that resolves when the database file is removed
+   */
+  public async removeDatabase(): Promise<void> {
+    this.stockDB.data = [];
+    await this.stockDB.write();
+  }
+
+  /**
    * @method getInstance - Method to get the instance of the StockService
    * @returns {StockService} - The instance of the StockService
    */
@@ -53,7 +62,11 @@ export class StockService {
    * @param quantity {number} - The quantity of the stock to add
    * @returns {Promise<void>} - A promise that resolves when the stock is added to the collection
    */
-  public async addStock(furniture_id: number, quantity: number, category:string): Promise<void> {
+  public async addStock(
+    furniture_id: number,
+    quantity: number,
+    category: string,
+  ): Promise<void> {
     await this.stockDB.read();
     const stock = this.stockDB.data.find(
       (f) => f.furniture_id === furniture_id,

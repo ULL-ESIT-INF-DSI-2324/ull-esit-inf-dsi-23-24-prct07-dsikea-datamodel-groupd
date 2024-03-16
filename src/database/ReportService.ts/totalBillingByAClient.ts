@@ -34,7 +34,7 @@ export class totalBillingByAClient extends ReportService {
     const clientData = await this.transactionService.getCollection();
     if (clientData.length === 0 || clientID === undefined) {
       throw new Error(
-        "No hay transacciones o no se ha especificado un cliente"
+        "No hay transacciones o no se ha especificado un cliente",
       );
     } else {
       // Comprobamos que el cliente sea correcto
@@ -58,7 +58,7 @@ export class totalBillingByAClient extends ReportService {
           "con nombre: ",
           this.clientService.getClientById(clientNumber).name,
           ": ",
-          totalBilling
+          totalBilling,
         );
       }
     }

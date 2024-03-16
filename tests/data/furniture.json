@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "id": 99,
+    "name": "Table 2",
+    "description": "Wooden table",
+    "dimensions": "100x100x100",
+    "material": "Wood",
+    "price": 100,
+    "type": "Table"
+  }
+]

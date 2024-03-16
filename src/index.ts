@@ -119,7 +119,6 @@ import { StockService } from "./database/StockService.js";
 
 // testPromptUser();
 
-
 // ---- PRUEBAS OSCAR ----
 
 import { Stock } from "./Stock.js";
@@ -134,9 +133,7 @@ import { Stock } from "./Stock.js";
 const stock = new Stock();
 // stock.getStock();
 
-
 // console.log("GOLA");
-
 
 // Función que utilice en inquirer para crear un menú de 3 opciones
 // 1. Agregar un nuevo al stock
@@ -205,7 +202,11 @@ await report.generateReport("2");
 
 // EMPEZAR A CLEAR TRANSACCIONES
 import { TransactionService } from "./database/TransactionService.js";
-import { ITransaction, IClientTransaction, ISupplierTransaction } from "./interfaces/ITransaction.js";
+import {
+  ITransaction,
+  IClientTransaction,
+  ISupplierTransaction,
+} from "./interfaces/ITransaction.js";
 
 // const transactionService = TransactionService.getInstance();
 // const  transaccion1 : IClientTransaction = {id: 1, date: new Date(), items: [furnitureService.getFurnitureById(1), furnitureService.getFurnitureById(2)], total: 270, clientId: 1, type: "sale"};

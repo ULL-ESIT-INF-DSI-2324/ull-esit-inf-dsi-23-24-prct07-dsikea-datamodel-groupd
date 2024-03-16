@@ -16,6 +16,15 @@ export class TransactionService {
   }
 
   /**
+   * @method removeDatabase - Method to remove the database file
+   * @returns {Promise<void>} - A promise that resolves when the database file is removed
+   */
+  public async removeDatabase(): Promise<void> {
+    this.transactionDB.data = [];
+    await this.transactionDB.write();
+  }
+
+  /**
    * @method getInstance - Method to get the instance of the TransactionService
    * @returns {TransactionService} - The instance of the TransactionService
    */
@@ -59,7 +68,7 @@ export class TransactionService {
     await this.transactionDB.write();
   }
 
-/**
+  /**
    * @method getTransaction - Method to get a transaction from the collection
    * @param id {number} - The id of the transaction to get
    * @returns {Promise<TransactionType>} - A promise that resolves with the transaction
@@ -80,7 +89,9 @@ export class TransactionService {
    */
   public async updateTransaction(transaction: TransactionType): Promise<void> {
     await this.transactionDB.read();
-    const index = this.transactionDB.data.findIndex((t) => t.id === transaction.id);
+    const index = this.transactionDB.data.findIndex(
+      (t) => t.id === transaction.id,
+    );
     if (index < 0) {
       throw new Error("transaction not found");
     }
@@ -95,7 +106,9 @@ export class TransactionService {
    */
   public async removeTransaction(id: number): Promise<void> {
     await this.transactionDB.read();
-    this.transactionDB.data = this.transactionDB.data.filter((t) => t.id !== id);
+    this.transactionDB.data = this.transactionDB.data.filter(
+      (t) => t.id !== id,
+    );
     await this.transactionDB.write();
   }
 
@@ -119,12 +132,14 @@ export class TransactionService {
     return this.transactionDB.data.filter((t) => t.type === type);
   }
 
-/**
+  /**
    * @method getTransactionsByTotal - Method to get the transactions by total
    * @param total {number} - The total to get the transactions
    * @returns {Promise<TransactionType[]>} - A promise that resolves with the transactions by total
    */
-  public async getTransactionsByTotal(total: number): Promise<TransactionType[]> {
+  public async getTransactionsByTotal(
+    total: number,
+  ): Promise<TransactionType[]> {
     await this.transactionDB.read();
     return this.transactionDB.data.filter((t) => t.total === total);
   }

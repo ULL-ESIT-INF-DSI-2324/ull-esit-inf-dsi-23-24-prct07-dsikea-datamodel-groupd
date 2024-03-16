@@ -16,6 +16,15 @@ export class SupplierService {
   }
 
   /**
+   * @method removeDatabase - Method to remove the database file
+   * @returns {Promise<void>} - A promise that resolves when the database file is removed
+   */
+  public async removeDatabase(): Promise<void> {
+    this.SupplierDB.data = [];
+    await this.SupplierDB.write();
+  }
+
+  /**
    * @method getInstance - Method to get the instance of the SupplierService
    * @returns {SupplierService} - The instance of the SupplierService
    */
@@ -119,11 +128,7 @@ export class SupplierService {
    * @returns {ISupplier[]} - Furnitures that match the name
    */
   public getSuppliersByName(name: string): ISupplier[] {
-    const suppliers = this.SupplierDB.data.filter((f) => f.name.includes(name));
-    if (!suppliers) {
-      throw new Error("Supplier not found");
-    }
-    return suppliers;
+    return this.SupplierDB.data.filter((f) => f.name.includes(name));
   }
 
   /**
@@ -132,13 +137,7 @@ export class SupplierService {
    * @returns {ISupplier[]} - Furnitures that match the contact
    */
   public getSupplierByContact(contact: string): ISupplier[] {
-    const suppliers = this.SupplierDB.data.filter((f) =>
-      f.contact.includes(contact),
-    );
-    if (!suppliers) {
-      throw new Error("Supplier not found");
-    }
-    return suppliers;
+    return this.SupplierDB.data.filter((f) => f.contact.includes(contact));
   }
 
   /**
@@ -147,12 +146,6 @@ export class SupplierService {
    * @returns {ISupplier[]} - Furnitures that match the address
    */
   public getSupplierByAddress(address: string): ISupplier[] {
-    const suppliers = this.SupplierDB.data.filter((f) =>
-      f.address.includes(address),
-    );
-    if (!suppliers) {
-      throw new Error("Supplier not found");
-    }
-    return suppliers;
+    return this.SupplierDB.data.filter((f) => f.address.includes(address));
   }
 }
