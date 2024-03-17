@@ -68,8 +68,7 @@ export class StockService {
 
   /**
    * @method addStock - Method to add a stock to the collection
-   * @param furniture_id {number} - The id of the stock to add
-   * @param quantity {number} - The quantity of the stock to add
+   * @param stock {IStock} - The stock to add
    * @returns {Promise<void>} - A promise that resolves when the stock is added to the collection
    */
   public async addStock(stock: IStock): Promise<void> {
