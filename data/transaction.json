@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "id": 1,
+    "date": "2024-03-17T12:14:48.858Z",
+    "items": [
+      {
+        "id": 1,
+        "name": "VÖXLABJÖRN",
+        "description": "Wooden nightstand",
+        "dimensions": "50x40x60",
+        "material": "Wood",
+        "price": 90,
+        "type": "Nightstand"
+      },
+      {
+        "id": 2,
+        "name": "FLYGNARP",
+        "description": "Glass coffee table",
+        "dimensions": "90x60x45",
+        "material": "Glass",
+        "price": 130,
+        "type": "Coffee Table"
+      }
+    ],
+    "total": 220,
+    "clientId": 1,
+    "type": "sale"
+  }
+]

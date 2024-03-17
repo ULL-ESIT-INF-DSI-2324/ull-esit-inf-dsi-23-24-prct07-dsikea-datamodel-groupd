@@ -27,7 +27,7 @@ async function promptSaleDetails() {
   const answers = await inquirer.prompt(questions);
   // Aquí puedes hacer algo con las respuestas
   const stock = new Stock();
-  await stock.clientBuy(parseInt(answers.clientID), answers.furnitureIDs.split(" "));
+  await stock.clientBuy(parseInt(answers.clientID), answers.furnitureIDs.split(" ").map(Number));
 }
 
 export function ClientsManagement() {

@@ -15,8 +15,7 @@ export class Stock {
   private furnitureService: FurnitureService = FurnitureService.getInstance();
   private clientService: ClientService = ClientService.getInstance();
 
-  constructor() {
-  }
+  constructor() {}
 
   /**
    * Retrieves the stock data and displays it in a table format.
@@ -26,7 +25,9 @@ export class Stock {
     // Creamos objetos que contengan id del mueble, nombre del mueble y cantidad en stock
     await stockData.then((stock) => {
       const tableData = stock.map((stock) => {
-        const furniture = this.furnitureService.getFurnitureById(stock.furniture_id);
+        const furniture = this.furnitureService.getFurnitureById(
+          stock.furniture_id
+        );
         return {
           Nombre: furniture.name,
           Identificador: stock.furniture_id,
@@ -41,7 +42,7 @@ export class Stock {
   public async clientBuy(clientID: number, furnituresID: number[]) {
     // Comprobamos que el cliente exista
     try {
-      const client = this.clientService.getClientById(clientID);
+      this.clientService.getClientById(clientID);
     } catch (error) {
       console.log("El cliente no existe");
       return;
@@ -49,14 +50,11 @@ export class Stock {
 
     // Comprobamos que los muebles existan
     try {
-      // EL CONSOLE LOG MUESTRA BIEN LOS MUEBLES DIOS MIO QUE PASA
-      // console.log(await this.furnitureService.getCollection());
-      for (const furniture of furnituresID) {
-        this.furnitureService.getFurnitureById(furniture);
+      for (const furnitureID of furnituresID) {
+        this.furnitureService.getFurnitureById(furnitureID);
       }
     } catch (error) {
-      // console.log("Uno de los muebles no existe");
-      console.log(error)
+      console.log(error);
       return;
     }
 
@@ -66,11 +64,15 @@ export class Stock {
 
     try {
       for (const furnitureID of furnituresID) {
-        const stock = await stockService.getStockById(furnitureID) ?? { quantity: 0 };
+        const stock = (await stockService.getStockById(furnitureID)) ?? {
+          quantity: 0,
+        };
         if (stock.quantity <= 0) {
           throw new Error("No hay stock suficiente");
         } else {
-          listOfFurnitures.push(this.furnitureService.getFurnitureById(furnitureID));
+          listOfFurnitures.push(
+            this.furnitureService.getFurnitureById(furnitureID)
+          );
         }
       }
     } catch (error) {

@@ -1,53 +1,52 @@
 [
-    {
-      "furniture_id": 1,
-      "quantity": 150,
-      "category": "Nightstand"
-    },
-    {
-      "furniture_id": 2,
-      "quantity": 100,
-      "category": "Coffee Table"
-    },
-    {
-      "furniture_id": 3,
-      "quantity": 80,
-      "category": "Bookcase"
-    },
-    {
-      "furniture_id": 4,
-      "quantity": 200,
-      "category": "Shelving Unit"
-    },
-    {
-      "furniture_id": 5,
-      "quantity": 120,
-      "category": "Wardrobe"
-    },
-    {
-      "furniture_id": 6,
-      "quantity": 90,
-      "category": "Dining Table"
-    },
-    {
-      "furniture_id": 7,
-      "quantity": 70,
-      "category": "Sofa"
-    },
-    {
-      "furniture_id": 8,
-      "quantity": 110,
-      "category": "Sideboard"
-    },
-    {
-      "furniture_id": 9,
-      "quantity": 300,
-      "category": "Chair"
-    },
-    {
-      "furniture_id": 10,
-      "quantity": 50,
-      "category": "Display Cabinet"
-    }
-  ]
-  
+  {
+    "furniture_id": 1,
+    "quantity": 149,
+    "category": "Nightstand"
+  },
+  {
+    "furniture_id": 2,
+    "quantity": 99,
+    "category": "Coffee Table"
+  },
+  {
+    "furniture_id": 3,
+    "quantity": 80,
+    "category": "Bookcase"
+  },
+  {
+    "furniture_id": 4,
+    "quantity": 200,
+    "category": "Shelving Unit"
+  },
+  {
+    "furniture_id": 5,
+    "quantity": 120,
+    "category": "Wardrobe"
+  },
+  {
+    "furniture_id": 6,
+    "quantity": 90,
+    "category": "Dining Table"
+  },
+  {
+    "furniture_id": 7,
+    "quantity": 70,
+    "category": "Sofa"
+  },
+  {
+    "furniture_id": 8,
+    "quantity": 110,
+    "category": "Sideboard"
+  },
+  {
+    "furniture_id": 9,
+    "quantity": 300,
+    "category": "Chair"
+  },
+  {
+    "furniture_id": 10,
+    "quantity": 50,
+    "category": "Display Cabinet"
+  }
+]
