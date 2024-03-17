@@ -35,7 +35,8 @@
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
     "tsc-watch": "^6.0.4",
-    "typedoc": "^0.25.10"
+    "typedoc": "^0.25.10",
+    "typedoc-theme-hierarchy": "^4.1.2"
   },
   "dependencies": {
     "@types/node": "^20.11.24",
