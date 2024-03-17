@@ -28,13 +28,13 @@ export class Stock {
   /**
    * @method showStock - Retrieves the stock data and displays it in a table format.
    */
-  public async showStock() {
+  public async showStock(): Promise<void> {
     const stockData = this.stockService.getCollection();
     // Creamos objetos que contengan id del mueble, nombre del mueble y cantidad en stock
     await stockData.then((stock) => {
       const tableData = stock.map((stock) => {
         const furniture = this.furnitureService.getFurnitureById(
-          stock.furniture_id,
+          stock.furniture_id
         );
         return {
           Nombre: furniture.name,
@@ -52,7 +52,10 @@ export class Stock {
    * @param {number[]} furnituresID - The IDs of the furniture.
    *
    */
-  public async clientBuy(clientID: number, furnituresID: number[]) {
+  public async clientBuy(
+    clientID: number,
+    furnituresID: number[]
+  ): Promise<void> {
     // Comprobamos que el cliente exista
     try {
       this.clientService.getClientById(clientID);
@@ -72,19 +75,18 @@ export class Stock {
     }
 
     // Comprobamos que haya stock suficiente y vamos metiendo los muebles
-    const stockService = StockService.getInstance();
     const listOfFurnitures: IFurniture[] = [];
 
     try {
       for (const furnitureID of furnituresID) {
-        const stock = (await stockService.getStockById(furnitureID)) ?? {
+        const stock = (await this.stockService.getStockById(furnitureID)) ?? {
           quantity: 0,
         };
         if (stock.quantity <= 0) {
           throw new Error("No hay stock suficiente");
         } else {
           listOfFurnitures.push(
-            this.furnitureService.getFurnitureById(furnitureID),
+            this.furnitureService.getFurnitureById(furnitureID)
           );
         }
       }
@@ -102,14 +104,13 @@ export class Stock {
 
     // Actualizamos el stock
     for (const furniture of listOfFurnitures) {
-      await stockService.reduceStock(furniture.id, 1);
+      await this.stockService.reduceStock(furniture.id, 1);
     }
 
     // Creamos la transacción
-    const transactionService = TransactionService.getInstance();
 
     const transaction: IClientTransaction = {
-      id: await transactionService.getNextID(),
+      id: await this.transactionService.getNextID(),
       date: new Date(),
       items: listOfFurnitures,
       total: totalPrice,
@@ -118,7 +119,7 @@ export class Stock {
     };
 
     // Añadimos la transacción
-    await transactionService.addTransaction(transaction);
+    await this.transactionService.addTransaction(transaction);
 
     console.log("Venta realizada con éxito");
   }
@@ -127,7 +128,7 @@ export class Stock {
    * @method clientDevolution - Executes the devolution of a client given the transaction ID.
    * @param {number} transactionID - The ID of the transaction.
    */
-  public async clientDevolution(transactionID: number) {
+  public async clientDevolution(transactionID: number): Promise<void> {
     // Comprobamos que la transacción exista
     try {
       this.transactionService.getTransactionById(transactionID);
@@ -177,7 +178,7 @@ export class Stock {
    * @method getAClient - Retrieves the client data given their ID and displays it in a table
    * @param {number} clientID - The ID of the client.
    */
-  public async getAClient(clientID: number) {
+  public async getAClient(clientID: number): Promise<void> {
     // Comprobamos que el cliente exista
     try {
       const client = this.clientService.getClientById(clientID);
@@ -199,8 +200,8 @@ export class Stock {
     name: string,
     address: string,
     contact: string,
-    isClient: boolean,
-  ) {
+    isClient: boolean
+  ): Promise<void> {
     if (isClient) {
       const client: IClient = {
         id: await this.clientService.getNextID(),
@@ -236,7 +237,7 @@ export class Stock {
    * @param {number} clientID - The ID of the client.
    * @param {boolean} isClient - A boolean that indicates if it is a client or a supplier.
    */
-  public async removeUser(clientID: number, isClient: boolean) {
+  public async removeUser(clientID: number, isClient: boolean): Promise<void> {
     if (isClient) {
       try {
         await this.clientService.removeClient(clientID);
@@ -263,8 +264,8 @@ export class Stock {
   public async supplierBuy(
     supplierID: number,
     furnitureID: number,
-    quantity: number,
-  ) {
+    quantity: number
+  ): Promise<void> {
     // Comprobamos que el proveedor exista
     try {
       this.clientService.getClientById(supplierID);
@@ -309,7 +310,7 @@ export class Stock {
    * @method supplierDevolution - Executes the devolution of a supplier given the transaction ID.
    * @param {number} transactionID - The ID of the transaction.
    */
-  public async supplierDevolution(transactionID: number) {
+  public async supplierDevolution(transactionID: number): Promise<void> {
     // Comprobamos que la transacción exista
     try {
       this.transactionService.getTransactionById(transactionID);
@@ -355,7 +356,7 @@ export class Stock {
    * @method getASupplier - Retrieves the supplier data given their ID and displays it in a table
    * @param {number} supplierID - The ID of the supplier.
    */
-  public async getASupplier(supplierID: number) {
+  public async getASupplier(supplierID: number): Promise<void> {
     // Comprobamos que el proveedor exista
     try {
       const supplier = this.supplierService.getSupplierById(supplierID);
@@ -368,19 +369,29 @@ export class Stock {
   /**
    * @method getAllSuppliers - Retrieves all the suppliers data and displays it in a table
    */
-  public async showAllSuppliers() {
+  public async showAllSuppliers(): Promise<void> {
     const suppliers = await this.supplierService.getCollection();
     console.table(suppliers);
   }
 
+  /**
+   * Adds a new furniture to the stock.
+   *
+   * @param name - The name of the furniture.
+   * @param description - The description of the furniture.
+   * @param dimensions - The dimensions of the furniture.
+   * @param material - The material of the furniture.
+   * @param price - The price of the furniture.
+   * @param type - The type of the furniture.
+   */
   public async addFurniture(
     name: string,
     description: string,
     dimensions: string,
     material: string,
     price: string,
-    type: string,
-  ) {
+    type: string
+  ): Promise<void> {
     try {
       const furniture: IFurniture = {
         id: await this.furnitureService.getNextID(),
@@ -398,7 +409,12 @@ export class Stock {
     }
   }
 
-  public async removeFurniture(furnitureID: number) {
+  /**
+   * Removes a furniture item from the stock.
+   * @param furnitureID - The ID of the furniture item to be removed.
+   * @returns A Promise that resolves when the furniture item is successfully removed.
+   */
+  public async removeFurniture(furnitureID: number): Promise<void> {
     try {
       await this.furnitureService.removeFurniture(furnitureID);
       console.log("Mueble eliminado con éxito");
@@ -407,7 +423,11 @@ export class Stock {
     }
   }
 
-  public async showAllClients() {
+  /**
+   * Retrieves and displays all clients.
+   * @returns {Promise<void>} A promise that resolves when the operation is complete.
+   */
+  public async showAllClients(): Promise<void> {
     const clients = await this.clientService.getCollection();
     console.table(clients);
   }
