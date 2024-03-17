@@ -4,7 +4,7 @@
     "./dist",
     "./tests"
   ],
-  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts", "src/database/ReportService"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 

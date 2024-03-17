@@ -1,0 +1,5 @@
+{
+  "entryPoints": ["./src/**/*.ts"],
+  "out": "./docs",
+  "name": "💻 Práctica 7 - DSIkea 💻"
+}

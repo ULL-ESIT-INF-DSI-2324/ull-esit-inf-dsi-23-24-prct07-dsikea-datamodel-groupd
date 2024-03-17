@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "VÖXLABJÖRN",
+    "description": "Wooden nightstand",
+    "dimensions": "50x40x60",
+    "material": "Wood",
+    "price": 90,
+    "type": "Nightstand"
+  },
+  {
+    "id": 2,
+    "name": "FLYGNARP",
+    "description": "Glass coffee table",
+    "dimensions": "90x60x45",
+    "material": "Glass",
+    "price": 130,
+    "type": "Coffee Table"
+  },
+  {
+    "id": 3,
+    "name": "SKOGSLÖNN",
+    "description": "Pine bookcase",
+    "dimensions": "80x30x190",
+    "material": "Pine",
+    "price": 180,
+    "type": "Bookcase"
+  },
+  {
+    "id": 4,
+    "name": "HYLLISÖN",
+    "description": "Metal shelving unit",
+    "dimensions": "60x27x140",
+    "material": "Metal",
+    "price": 50,
+    "type": "Shelving Unit"
+  },
+  {
+    "id": 5,
+    "name": "SKÄRSKÅP",
+    "description": "Birch wardrobe",
+    "dimensions": "120x60x190",
+    "material": "Birch",
+    "price": 250,
+    "type": "Wardrobe"
+  },
+  {
+    "id": 6,
+    "name": "KALLÅR",
+    "description": "Oak dining table",
+    "dimensions": "150x90x75",
+    "material": "Oak",
+    "price": 350,
+    "type": "Dining Table"
+  },
+  {
+    "id": 7,
+    "name": "RÄNNAR",
+    "description": "Leather sofa",
+    "dimensions": "200x100x80",
+    "material": "Leather",
+    "price": 700,
+    "type": "Sofa"
+  },
+  {
+    "id": 8,
+    "name": "GULFÅL",
+    "description": "Acacia sideboard",
+    "dimensions": "120x40x85",
+    "material": "Acacia",
+    "price": 230,
+    "type": "Sideboard"
+  },
+  {
+    "id": 9,
+    "name": "STÄLKBÄK",
+    "description": "Plastic chair",
+    "dimensions": "50x50x80",
+    "material": "Plastic",
+    "price": 20,
+    "type": "Chair"
+  },
+  {
+    "id": 10,
+    "name": "ÅNGSUNDE",
+    "description": "Glass display cabinet",
+    "dimensions": "100x40x200",
+    "material": "Glass",
+    "price": 300,
+    "type": "Display Cabinet"
+  }
+]
