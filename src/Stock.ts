@@ -49,8 +49,10 @@ export class Stock {
 
     // Comprobamos que los muebles existan
     try {
+      // EL CONSOLE LOG MUESTRA BIEN LOS MUEBLES DIOS MIO QUE PASA
+      // console.log(await this.furnitureService.getCollection());
       for (const furniture of furnituresID) {
-        const furnitureResult = this.furnitureService.getFurnitureById(furniture);
+        this.furnitureService.getFurnitureById(furniture);
       }
     } catch (error) {
       // console.log("Uno de los muebles no existe");
