@@ -146,4 +146,13 @@ export class TransactionService {
     }
     return transaction;
   }
+
+  /**
+   * @method getNextID - Method to get the next id for a transaction
+   * @returns {number} - The next id for a transaction
+   */
+  public async getNextID(): Promise<number> {
+    await this.transactionDB.read();
+    return this.transactionDB.data.length + 1;
+  }
 }
