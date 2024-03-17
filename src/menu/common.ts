@@ -5,14 +5,15 @@ import { ClientsManagement } from "./ClientsManagement.js";
 import { ReportsManagement } from "./ReportsManagement.js";
 
 enum SubMenu {
-  Stock = "Stock Management",
-  Suppliers = "Suppliers Management",
   Clients = "Clients Management",
+  Suppliers = "Suppliers Management",
   Reports = "Reports",
+  Stock = "Stock Management",
   Quit = "Quit",
 }
 
 export function consoleMenu(): void {
+  // Declaramos el stock
   console.clear();
   inquirer
     .prompt({

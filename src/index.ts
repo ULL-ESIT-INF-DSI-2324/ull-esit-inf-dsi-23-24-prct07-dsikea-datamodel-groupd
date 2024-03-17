@@ -178,110 +178,114 @@ const stock = new Stock();
 
 // -------------------------- PRUEBAS REPORT SERVICE --------------------------
 
-import { stockByCategory } from "./database/ReportService/stockByCategory.js";
-import { stockByFurnitureID } from "./database/ReportService/stockByFurnitureID.js";
-import { bestSellingFurniture } from "./database/ReportService/bestSellingFurniture.js";
-import { totalBillingClients } from "./database/ReportService/totalBillingClients.js";
-import { totalBillingSuppliers } from "./database/ReportService/totalBillingSuppliers.js";
-import { totalBillingClientsByYear } from "./database/ReportService/totalBillingClientsByYear.js";
-import { totalBillingSuppliersByYear } from "./database/ReportService/totalBillingSuppliersByYear.js";
-import { totalBillingByAClient } from "./database/ReportService/totalBillingByAClient.js";
-import { totalBillingByASupplier } from "./database/ReportService/totalBillingByASupplier.js";
-// DEBERÍA AÑADIRSE EL STOCK EN LA CLASE STOCK
-const servicioStock = StockService.getInstance();
-// servicioStock.addStock(1, 10, "Mesa");
-// servicioStock.addStock(2, 10, "Silla");
-// servicioStock.addStock(3, 10, "Mesa nocturna");
+// import { stockByCategory } from "./database/ReportService/stockByCategory.js";
+// import { stockByFurnitureID } from "./database/ReportService/stockByFurnitureID.js";
+// import { bestSellingFurniture } from "./database/ReportService/bestSellingFurniture.js";
+// import { totalBillingClients } from "./database/ReportService/totalBillingClients.js";
+// import { totalBillingSuppliers } from "./database/ReportService/totalBillingSuppliers.js";
+// import { totalBillingClientsByYear } from "./database/ReportService/totalBillingClientsByYear.js";
+// import { totalBillingSuppliersByYear } from "./database/ReportService/totalBillingSuppliersByYear.js";
+// import { totalBillingByAClient } from "./database/ReportService/totalBillingByAClient.js";
+// import { totalBillingByASupplier } from "./database/ReportService/totalBillingByASupplier.js";
+// // DEBERÍA AÑADIRSE EL STOCK EN LA CLASE STOCK
+// const servicioStock = StockService.getInstance();
+// // servicioStock.addStock(1, 10, "Mesa");
+// // servicioStock.addStock(2, 10, "Silla");
+// // servicioStock.addStock(3, 10, "Mesa nocturna");
 
-let report = new stockByCategory();
-await report.generateReport("Table");
-report = new stockByFurnitureID();
-await report.generateReport("1");
-await report.generateReport("100");
-await report.generateReport("2");
+// let report = new stockByCategory();
+// await report.generateReport("Table");
+// report = new stockByFurnitureID();
+// await report.generateReport("1");
+// await report.generateReport("100");
+// await report.generateReport("2");
 
-// EMPEZAR A CLEAR TRANSACCIONES
-import { TransactionService } from "./database/TransactionService.js";
-import {
-  ITransaction,
-  IClientTransaction,
-  ISupplierTransaction,
-} from "./interfaces/ITransaction.js";
+// // EMPEZAR A CLEAR TRANSACCIONES
+// import { TransactionService } from "./database/TransactionService.js";
+// import {
+//   ITransaction,
+//   IClientTransaction,
+//   ISupplierTransaction,
+// } from "./interfaces/ITransaction.js";
 
-// const transactionService = TransactionService.getInstance();
-// const  transaccion1 : IClientTransaction = {id: 1, date: new Date(), items: [furnitureService.getFurnitureById(1), furnitureService.getFurnitureById(2)], total: 270, clientId: 1, type: "sale"};
-// const transaccion2 : ISupplierTransaction = {id: 2, date: new Date(), items: [furnitureService.getFurnitureById(1), furnitureService.getFurnitureById(2)], total: 270, supplierId: 1, type: "purchase"};
-// transactionService.addTransaction(transaccion1);
-// transactionService.addTransaction(transaccion2);
+// // const transactionService = TransactionService.getInstance();
+// // const  transaccion1 : IClientTransaction = {id: 1, date: new Date(), items: [furnitureService.getFurnitureById(1), furnitureService.getFurnitureById(2)], total: 270, clientId: 1, type: "sale"};
+// // const transaccion2 : ISupplierTransaction = {id: 2, date: new Date(), items: [furnitureService.getFurnitureById(1), furnitureService.getFurnitureById(2)], total: 270, supplierId: 1, type: "purchase"};
+// // transactionService.addTransaction(transaccion1);
+// // transactionService.addTransaction(transaccion2);
 
-const report1 = new bestSellingFurniture();
-await report1.generateReport();
+// const report1 = new bestSellingFurniture();
+// await report1.generateReport();
 
-let report2 = new totalBillingClients();
-await report2.generateReport();
-report2 = new totalBillingSuppliers();
-await report2.generateReport();
-let report3 = new totalBillingClientsByYear();
-await report3.generateReport("2023");
-await report3.generateReport("2024");
-report3 = new totalBillingSuppliersByYear();
-await report3.generateReport("2023");
-await report3.generateReport("2024");
-await report3.generateReport("2022");
-// Añadimos al cliente 1 y 2
-import { ClientService } from "./database/ClientsService.js";
-// const cliente1 = {id: 1, name: "Cliente1", address: "Address1", contact: "1234567890"};
-// const cliente2 = {id: 2, name: "Cliente2", address: "Address2", contact: "123456"};
-// const clienteService = new ClientService();
-// await clienteService.addClient(cliente1);
-// await clienteService.addClient(cliente2);
+// let report2 = new totalBillingClients();
+// await report2.generateReport();
+// report2 = new totalBillingSuppliers();
+// await report2.generateReport();
+// let report3 = new totalBillingClientsByYear();
+// await report3.generateReport("2023");
+// await report3.generateReport("2024");
+// report3 = new totalBillingSuppliersByYear();
+// await report3.generateReport("2023");
+// await report3.generateReport("2024");
+// await report3.generateReport("2022");
+// // Añadimos al cliente 1 y 2
+// import { ClientService } from "./database/ClientsService.js";
+// // const cliente1 = {id: 1, name: "Cliente1", address: "Address1", contact: "1234567890"};
+// // const cliente2 = {id: 2, name: "Cliente2", address: "Address2", contact: "123456"};
+// // const clienteService = new ClientService();
+// // await clienteService.addClient(cliente1);
+// // await clienteService.addClient(cliente2);
 
-let report4 = new totalBillingByAClient();
-await report4.generateReport("1");
-await report4.generateReport("2");
-await report4.generateReport("3");
+// let report4 = new totalBillingByAClient();
+// await report4.generateReport("1");
+// await report4.generateReport("2");
+// await report4.generateReport("3");
 
-report4 = new totalBillingByASupplier();
-await report4.generateReport("1");
-await report4.generateReport("2");
-await report4.generateReport("3");
+// report4 = new totalBillingByASupplier();
+// await report4.generateReport("1");
+// await report4.generateReport("2");
+// await report4.generateReport("3");
 
-console.log("------------------------------------");
-const report5 = new totalBillingByAClient();
-await report5.generateReport("1");
-await report5.generateReport("2");
-await report5.generateReport("3");
-await report5.generateReport("4");
-await report5.generateReport("5");
+// console.log("------------------------------------");
+// const report5 = new totalBillingByAClient();
+// await report5.generateReport("1");
+// await report5.generateReport("2");
+// await report5.generateReport("3");
+// await report5.generateReport("4");
+// await report5.generateReport("5");
 
-console.log("------------------------------------");
-const report6 = new totalBillingByASupplier();
-await report6.generateReport("1");
-await report6.generateReport("2");
-await report6.generateReport("3");
-await report6.generateReport("4");
-await report6.generateReport("5");
+// console.log("------------------------------------");
+// const report6 = new totalBillingByASupplier();
+// await report6.generateReport("1");
+// await report6.generateReport("2");
+// await report6.generateReport("3");
+// await report6.generateReport("4");
+// await report6.generateReport("5");
 
-console.log("------------------------------------");
-const report7 = new totalBillingClients();
-await report7.generateReport();
+// console.log("------------------------------------");
+// const report7 = new totalBillingClients();
+// await report7.generateReport();
 
-console.log("------------------------------------");
-const report8 = new totalBillingSuppliers();
-await report8.generateReport();
+// console.log("------------------------------------");
+// const report8 = new totalBillingSuppliers();
+// await report8.generateReport();
 
-console.log("------------------------------------");
-const report9 = new totalBillingClientsByYear();
-await report9.generateReport("2023");
-await report9.generateReport("2024");
-await report9.generateReport("2022");
+// console.log("------------------------------------");
+// const report9 = new totalBillingClientsByYear();
+// await report9.generateReport("2023");
+// await report9.generateReport("2024");
+// await report9.generateReport("2022");
 
-console.log("------------------------------------");
-const report10 = new totalBillingSuppliersByYear();
-await report10.generateReport("2023");
-await report10.generateReport("2024");
-await report10.generateReport("2022");
+// console.log("------------------------------------");
+// const report10 = new totalBillingSuppliersByYear();
+// await report10.generateReport("2023");
+// await report10.generateReport("2024");
+// await report10.generateReport("2022");
 
-console.log("-------------------------------------");
-const report100 = new bestSellingFurniture();
-await report100.generateReport();
+// console.log("-------------------------------------");
+// const report100 = new bestSellingFurniture();
+// await report100.generateReport();
+
+import { consoleMenu } from "./menu/common.js";
+
+consoleMenu();
