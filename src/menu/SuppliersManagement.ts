@@ -12,6 +12,9 @@ enum SuppliersMenu {
   Quit = "Return to main menu",
 }
 
+/**
+ * Prompt the user to buy stock
+ */
 async function promptBuyStock() {
   const questions = [
     {
@@ -41,6 +44,9 @@ async function promptBuyStock() {
   );
 }
 
+/**
+ * Main function for the suppliers management
+ */
 export function SuppliersManagement() {
   const stock = new Stock();
   console.clear();
@@ -110,7 +116,7 @@ export function SuppliersManagement() {
           break;
         case SuppliersMenu.Show:
           try {
-            await stock.getAllSuppliers();
+            await stock.showAllSuppliers();
             await waitForInput();
             consoleMenu();
           } catch (error) {

@@ -3,8 +3,6 @@ import { StockManagement } from "./StockManagement.js";
 import { SuppliersManagement } from "./SuppliersManagement.js";
 import { ClientsManagement } from "./ClientsManagement.js";
 import { ReportsManagement } from "./ReportsManagement.js";
-import { IClient } from "../interfaces/IClient.js";
-import { ISupplier } from "../interfaces/ISupplier.js";
 
 enum SubMenu {
   Clients = "Clients Management",
@@ -14,6 +12,9 @@ enum SubMenu {
   Quit = "Quit",
 }
 
+/**
+ * Function to show the main menu
+ */
 export function consoleMenu(): void {
   // Declaramos el stock
   console.clear();
@@ -64,6 +65,9 @@ export function promptAddUser() {
   return answers;
 }
 
+/**
+ * Function to prompt an input with a message
+ */
 export async function promptSingleString(message: string): Promise<string> {
   const answers = await inquirer.prompt({
     type: "input",
@@ -73,7 +77,9 @@ export async function promptSingleString(message: string): Promise<string> {
   return answers.value;
 }
 
-
+/**
+ * Function to wait for the user to press enter (to continue)
+ */
 export async function waitForInput() {
   await inquirer.prompt({
     type: "input",

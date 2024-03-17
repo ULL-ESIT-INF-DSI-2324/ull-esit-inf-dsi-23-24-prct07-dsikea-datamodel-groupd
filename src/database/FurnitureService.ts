@@ -157,4 +157,19 @@ export class FurnitureService {
       f.description.includes(description),
     );
   }
+
+  
+  /**
+   * Retrieves the next available ID for a furniture item.
+   * 
+   * @returns A Promise that resolves to the next available ID.
+   */
+  public async getNextID(): Promise<number> {
+    await this.furnitureDB.read();
+    let id: number = 1;
+    while (this.furnitureDB.data.find((f) => f.id === id)) {
+      id++;
+    }
+    return id;
+  }
 }

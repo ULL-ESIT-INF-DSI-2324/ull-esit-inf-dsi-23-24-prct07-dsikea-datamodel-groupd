@@ -4,7 +4,7 @@ import { ClientService } from "./database/ClientsService.js";
 import { TransactionService } from "./database/TransactionService.js";
 import { IClient } from "./interfaces/IClient.js";
 import { IFurniture } from "./interfaces/IFurniture.js";
-import { IClientTransaction, ITransaction, ISupplierTransaction } from "./interfaces/ITransaction.js";
+import { IClientTransaction, ISupplierTransaction } from "./interfaces/ITransaction.js";
 import { IStock } from "./interfaces/IStock.js";
 import { ISupplier } from "./interfaces/ISupplier.js";
 import { SupplierService } from "./database/SupplierService.js";
@@ -22,9 +22,9 @@ export class Stock {
   constructor() {}
 
   /**
-   * @method getAllStock - Retrieves the stock data and displays it in a table format.
+   * @method showStock - Retrieves the stock data and displays it in a table format.
    */
-  public async getAllStock() {
+  public async showStock() {
     const stockData = this.stockService.getCollection();
     // Creamos objetos que contengan id del mueble, nombre del mueble y cantidad en stock
     await stockData.then((stock) => {
@@ -348,8 +348,40 @@ export class Stock {
   /**
    * @method getAllSuppliers - Retrieves all the suppliers data and displays it in a table 
    */
-  public async getAllSuppliers() {
+  public async showAllSuppliers() {
     const suppliers = await this.supplierService.getCollection();
     console.table(suppliers);
+  }
+
+  public async addFurniture(name: string, description: string, dimensions: string, material: string, price: string, type: string) {
+    try {
+      const furniture: IFurniture = {
+        id: await this.furnitureService.getNextID(),
+        name: name,
+        description: description,
+        dimensions: dimensions,
+        material: material,
+        price: parseInt(price),
+        type: type,
+      };
+      await this.furnitureService.addFurniture(furniture);
+      console.log("Mueble añadido con éxito");
+    } catch (error) {
+      console.log("Error al añadir el mueble");
+    }
+  }
+
+  public async removeFurniture(furnitureID: number) {
+    try {
+      await this.furnitureService.removeFurniture(furnitureID);
+      console.log("Mueble eliminado con éxito");
+    } catch (error) {
+      console.log("Error al eliminar el mueble");
+    }
+  }
+
+  public async showAllClients() {
+    const clients = await this.clientService.getCollection();
+    console.table(clients);
   }
 }

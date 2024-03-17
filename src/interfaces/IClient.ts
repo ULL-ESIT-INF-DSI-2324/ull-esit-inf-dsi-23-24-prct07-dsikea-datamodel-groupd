@@ -1,5 +1,5 @@
 /**
- * @interface to represent the data structure of a client
+ * @interface IClient - represent the data structure of a client
  */
 export interface IClient {
   id: number;

@@ -8,9 +8,13 @@ enum ClientsMenu {
   GetClient = "Get Client by ID",
   Add = "Add Client",
   Remove = "Remove Client",
+  Show = "Show Clients",
   Quit = "Return to main menu",
 }
 
+/**
+ * Prompt the user for the client ID and the furniture IDs to be sold
+ */
 async function promptSaleDetails() {
   const questions = [
     {
@@ -31,7 +35,9 @@ async function promptSaleDetails() {
   await stock.clientBuy(parseInt(answers.clientID), answers.furnitureIDs.split(" ").map(Number));
 }
 
-
+/**
+ * Clients management menu
+ */
 export function ClientsManagement() {
   const stock = new Stock();
   console.clear();
@@ -89,6 +95,17 @@ export function ClientsManagement() {
           try {
             const clientID = await promptSingleString("Enter the client ID");
             await stock.removeUser(parseInt(clientID), true);
+            await waitForInput();
+            consoleMenu();
+          } catch (error) {
+            console.log(error);
+            await waitForInput();
+            consoleMenu();
+          }
+          break;
+        case ClientsMenu.Show:
+          try {
+            await stock.showAllClients();
             await waitForInput();
             consoleMenu();
           } catch (error) {

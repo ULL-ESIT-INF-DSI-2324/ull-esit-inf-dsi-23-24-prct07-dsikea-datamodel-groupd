@@ -1,5 +1,5 @@
 /**
- * @interface to represent the data structure of a furniture
+ * @interface IFurniture - represent the data structure of a furniture
  */
 export interface IFurniture {
   id: number;

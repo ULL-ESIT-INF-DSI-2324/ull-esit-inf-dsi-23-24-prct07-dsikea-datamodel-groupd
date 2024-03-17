@@ -1,5 +1,8 @@
 import { IFurniture } from "./IFurniture.js";
 
+/**
+ * @interface ITransaction - Interface for the transaction object
+ */
 export interface ITransaction {
   id: number;
   date: Date;
@@ -7,19 +10,23 @@ export interface ITransaction {
   total: number;
 }
 
-// Tal vez deberíamos ampliar la interfaz para incluir una transacción de cliente y proveedor y
-// dividirlo en dos interfaces diferentes, algo del rollo
-
-// NO DEFINITIVO
+/**
+ * @interface IClientTransaction - Interface for the client transaction object
+ */
 export interface IClientTransaction extends ITransaction {
   clientId: number;
   type: "sale" | "client_devolution";
 }
 
-// NO DEFINITIVO
+/**
+ * @interface ISupplierTransaction - Interface for the supplier transaction object
+ */
 export interface ISupplierTransaction extends ITransaction {
   supplierId: number;
   type: "purchase" | "devolution";
 }
 
+/**
+ * @type TransactionType - Union type for the transaction object
+ */
 export type TransactionType = IClientTransaction | ISupplierTransaction;
