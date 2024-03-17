@@ -1,12 +1,13 @@
 import inquirer from "inquirer";
-import { consoleMenu, promptAdd, waitForInput } from "./common.js";
+import { consoleMenu, promptAddUser, waitForInput, promptSingleString } from "./common.js";
 import { Stock } from "../Stock.js";
 
 enum ClientsMenu {
   Sale = "New Sale",
-  Show = "Show Clients",
+  Devolution = "New Devolution",
+  GetClient = "Get Client by ID",
   Add = "Add Client",
-  ShowHistory = "Show Client History",
+  Remove = "Remove Client",
   Quit = "Return to main menu",
 }
 
@@ -30,7 +31,9 @@ async function promptSaleDetails() {
   await stock.clientBuy(parseInt(answers.clientID), answers.furnitureIDs.split(" ").map(Number));
 }
 
+
 export function ClientsManagement() {
+  const stock = new Stock();
   console.clear();
   inquirer
     .prompt({
@@ -42,23 +45,57 @@ export function ClientsManagement() {
     .then(async (answers) => {
       switch (answers["command"]) {
         case ClientsMenu.Sale:
-          "New sale";
           await promptSaleDetails();
           await waitForInput();
           consoleMenu();
           break;
-        case ClientsMenu.Show:
-          "Show clients";
-          await waitForInput();
-          ClientsManagement();
+        case ClientsMenu.Devolution:
+          try {
+            const transactionID = await promptSingleString("Enter the transaction ID");
+            await stock.clientDevolution(parseInt(transactionID));
+            await waitForInput();
+            consoleMenu();
+          } catch (error) {
+            console.log(error);
+            await waitForInput();
+            consoleMenu();
+          }
+          break;
+        case ClientsMenu.GetClient:
+          try {
+            const clientID = await promptSingleString("Enter the client ID");
+            await stock.getAClient(parseInt(clientID));
+            await waitForInput();
+            consoleMenu();
+          } catch (error) {
+            console.log(error);
+            await waitForInput();
+            consoleMenu();
+          }
           break;
         case ClientsMenu.Add:
-          promptAdd("Enter the name of the client");
-          
-          ClientsManagement();
+          try {
+            const answers = await promptAddUser();
+            await stock.addUser(answers.name, answers.address, answers.contact, true);
+            await waitForInput();
+            consoleMenu();
+          } catch (error) {
+            console.log(error);
+            await waitForInput();
+            consoleMenu();
+          }
           break;
-        case ClientsMenu.ShowHistory:
-          ClientsManagement();
+        case ClientsMenu.Remove:
+          try {
+            const clientID = await promptSingleString("Enter the client ID");
+            await stock.removeUser(parseInt(clientID), true);
+            await waitForInput();
+            consoleMenu();
+          } catch (error) {
+            console.log(error);
+            await waitForInput();
+            consoleMenu();
+          }
           break;
         case ClientsMenu.Quit:
           consoleMenu();

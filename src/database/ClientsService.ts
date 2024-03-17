@@ -153,4 +153,17 @@ export class ClientService {
   public getClientsByAddress(address: string): IClient[] {
     return this.clientDB.data.filter((f) => f.address.includes(address));
   }
+
+  /**
+   * @method getNextID - Method to get the next id for a client
+   * @returns {Promise<number>} - A promise that resolves with the next id for a client
+   */
+  public async getNextID(): Promise<number> {
+    await this.clientDB.read();
+    let nextID = 1;
+    while (this.clientDB.data.find((f) => f.id === nextID)) {
+      nextID++;
+    }
+    return nextID;
+  }
 }

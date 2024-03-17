@@ -148,4 +148,17 @@ export class SupplierService {
   public getSuppliersByAddress(address: string): ISupplier[] {
     return this.SupplierDB.data.filter((f) => f.address.includes(address));
   }
+
+  /**
+   * @method getNextID - Method to get the next id for the collection
+   * @returns {number} - The next id for the collection
+   */
+  public async getNextID(): Promise<number> {
+    await this.SupplierDB.read();
+    let nextID = 1;
+    while (this.SupplierDB.data.find((f) => f.id === nextID)) {
+      nextID++;
+    }
+    return nextID;
+  }
 }

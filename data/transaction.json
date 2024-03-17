@@ -1,7 +1,34 @@
 [
   {
-    "id": 1,
-    "date": "2024-03-17T12:14:48.858Z",
+    "id": 2,
+    "date": "2024-03-17T12:49:34.673Z",
+    "items": [
+      {
+        "id": 5,
+        "name": "SKÄRSKÅP",
+        "description": "Birch wardrobe",
+        "dimensions": "120x60x190",
+        "material": "Birch",
+        "price": 250,
+        "type": "Wardrobe"
+      },
+      {
+        "id": 7,
+        "name": "RÄNNAR",
+        "description": "Leather sofa",
+        "dimensions": "200x100x80",
+        "material": "Leather",
+        "price": 700,
+        "type": "Sofa"
+      }
+    ],
+    "total": 950,
+    "clientId": 2,
+    "type": "sale"
+  },
+  {
+    "id": 3,
+    "date": "2024-03-17T12:52:15.633Z",
     "items": [
       {
         "id": 1,
@@ -13,6 +40,78 @@
         "type": "Nightstand"
       },
       {
+        "id": 3,
+        "name": "SKOGSLÖNN",
+        "description": "Pine bookcase",
+        "dimensions": "80x30x190",
+        "material": "Pine",
+        "price": 180,
+        "type": "Bookcase"
+      },
+      {
+        "id": 5,
+        "name": "SKÄRSKÅP",
+        "description": "Birch wardrobe",
+        "dimensions": "120x60x190",
+        "material": "Birch",
+        "price": 250,
+        "type": "Wardrobe"
+      }
+    ],
+    "total": 520,
+    "clientId": 5,
+    "type": "sale"
+  },
+  {
+    "id": 1,
+    "date": "2024-03-17T14:12:16.117Z",
+    "items": [
+      {
+        "id": 6,
+        "name": "KALLÅR",
+        "description": "Oak dining table",
+        "dimensions": "150x90x75",
+        "material": "Oak",
+        "price": 350,
+        "type": "Dining Table"
+      }
+    ],
+    "total": 3500,
+    "supplierId": 1,
+    "type": "purchase"
+  },
+  {
+    "id": 5,
+    "date": "2024-03-17T14:22:14.983Z",
+    "items": [
+      {
+        "id": 4,
+        "name": "HYLLISÖN",
+        "description": "Metal shelving unit",
+        "dimensions": "60x27x140",
+        "material": "Metal",
+        "price": 50,
+        "type": "Shelving Unit"
+      }
+    ],
+    "total": 1000,
+    "supplierId": 2,
+    "type": "devolution"
+  },
+  {
+    "id": 4,
+    "date": "2024-03-17T14:22:48.200Z",
+    "items": [
+      {
+        "id": 2,
+        "name": "FLYGNARP",
+        "description": "Glass coffee table",
+        "dimensions": "90x60x45",
+        "material": "Glass",
+        "price": 130,
+        "type": "Coffee Table"
+      },
+      {
         "id": 2,
         "name": "FLYGNARP",
         "description": "Glass coffee table",
@@ -22,8 +121,8 @@
         "type": "Coffee Table"
       }
     ],
-    "total": 220,
+    "total": 260,
     "clientId": 1,
-    "type": "sale"
+    "type": "client_devolution"
   }
 ]

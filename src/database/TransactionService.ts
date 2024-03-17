@@ -153,6 +153,11 @@ export class TransactionService {
    */
   public async getNextID(): Promise<number> {
     await this.transactionDB.read();
-    return this.transactionDB.data.length + 1;
+    // Buscar el primer id que no esté en uso
+    let id = 1;
+    while (this.transactionDB.data.find((t) => t.id === id)) {
+      id++;
+    }
+    return id;
   }
 }

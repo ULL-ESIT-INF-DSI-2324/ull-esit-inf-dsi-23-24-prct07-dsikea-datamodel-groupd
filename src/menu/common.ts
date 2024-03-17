@@ -3,12 +3,14 @@ import { StockManagement } from "./StockManagement.js";
 import { SuppliersManagement } from "./SuppliersManagement.js";
 import { ClientsManagement } from "./ClientsManagement.js";
 import { ReportsManagement } from "./ReportsManagement.js";
+import { IClient } from "../interfaces/IClient.js";
+import { ISupplier } from "../interfaces/ISupplier.js";
 
 enum SubMenu {
   Clients = "Clients Management",
   Suppliers = "Suppliers Management",
-  Reports = "Reports",
   Stock = "Stock Management",
+  Reports = "Reports",
   Quit = "Quit",
 }
 
@@ -40,17 +42,37 @@ export function consoleMenu(): void {
     });
 }
 
-export function promptAdd(message: string) {
-  console.clear();
-  inquirer
-    .prompt({ type: "input", name: "add", message: message })
-    .then((answers) => {
-      if (answers["add"] !== "") {
-        // collection.push([answers["add"], false]);
-      }
-      consoleMenu();
-    });
+export function promptAddUser() {
+  const questions = [
+    {
+      type: "input",
+      name: "name",
+      message: "Enter the name",
+    },
+    {
+      type: "input",
+      name: "address",
+      message: "Enter the address",
+    },
+    {
+      type: "input",
+      name: "contact",
+      message: "Enter a phone number",
+    },
+  ];
+  const answers = inquirer.prompt(questions);
+  return answers;
 }
+
+export async function promptSingleString(message: string): Promise<string> {
+  const answers = await inquirer.prompt({
+    type: "input",
+    name: "value",
+    message: message,
+  });
+  return answers.value;
+}
+
 
 export async function waitForInput() {
   await inquirer.prompt({

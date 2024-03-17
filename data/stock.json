@@ -6,32 +6,32 @@
   },
   {
     "furniture_id": 2,
-    "quantity": 99,
+    "quantity": 100,
     "category": "Coffee Table"
   },
   {
     "furniture_id": 3,
-    "quantity": 80,
+    "quantity": 79,
     "category": "Bookcase"
   },
   {
     "furniture_id": 4,
-    "quantity": 200,
+    "quantity": 219.95,
     "category": "Shelving Unit"
   },
   {
     "furniture_id": 5,
-    "quantity": 120,
+    "quantity": 118,
     "category": "Wardrobe"
   },
   {
     "furniture_id": 6,
-    "quantity": 90,
+    "quantity": 100,
     "category": "Dining Table"
   },
   {
     "furniture_id": 7,
-    "quantity": 70,
+    "quantity": 69,
     "category": "Sofa"
   },
   {

@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { consoleMenu, promptAdd, waitForInput } from "./common.js";
+import { consoleMenu, waitForInput } from "./common.js";
 
 enum StockMenu {
   Show = "Show Stock",
@@ -26,7 +26,7 @@ export function StockManagement() {
           StockManagement();
           break;
         case StockMenu.Add:
-          promptAdd("Enter the name of the furniture");
+          // promptAdd("Enter the name of the furniture");
           StockManagement();
           break;
         case StockMenu.Sell:
