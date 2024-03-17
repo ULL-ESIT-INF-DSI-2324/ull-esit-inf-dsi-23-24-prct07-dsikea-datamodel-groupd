@@ -26,9 +26,11 @@ export function ReportsManagement() {
           break;
         case ReportsMenu.ShowClient:
           promptAdd("Enter the name of the client");
+          ReportsManagement();
           break;
         case ReportsMenu.ShowSupplier:
           promptAdd("Enter the name of the supplier");
+          ReportsManagement();
           break;
         case ReportsMenu.Quit:
           consoleMenu();
