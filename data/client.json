@@ -1,8 +1,62 @@
 [
   {
     "id": 1,
-    "name": "John Doe",
-    "contact": "1234567890",
-    "address": "123 Street"
+    "name": "Alice Smith",
+    "contact": "555-1234",
+    "address": "123 Main Street"
+  },
+  {
+    "id": 2,
+    "name": "Bob Johnson",
+    "contact": "555-5678",
+    "address": "456 Elm Street"
+  },
+  {
+    "id": 3,
+    "name": "Eva Martinez",
+    "contact": "555-9876",
+    "address": "789 Oak Avenue"
+  },
+  {
+    "id": 4,
+    "name": "David Lee",
+    "contact": "555-4321",
+    "address": "321 Pine Road"
+  },
+  {
+    "id": 5,
+    "name": "Sophia Wilson",
+    "contact": "555-8765",
+    "address": "555 Cedar Lane"
+  },
+  {
+    "id": 6,
+    "name": "Michael Brown",
+    "contact": "555-3456",
+    "address": "888 Birch Boulevard"
+  },
+  {
+    "id": 7,
+    "name": "Olivia Taylor",
+    "contact": "555-6543",
+    "address": "777 Maple Court"
+  },
+  {
+    "id": 8,
+    "name": "Liam Rodriguez",
+    "contact": "555-7890",
+    "address": "999 Walnut Avenue"
+  },
+  {
+    "id": 9,
+    "name": "Isabella Garcia",
+    "contact": "555-2345",
+    "address": "222 Ash Street"
+  },
+  {
+    "id": 10,
+    "name": "Jacob Hernandez",
+    "contact": "555-8901",
+    "address": "444 Oak Drive"
   }
 ]
