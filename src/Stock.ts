@@ -107,6 +107,6 @@ export class Stock {
     // Añadimos la transacción
     await transactionService.addTransaction(transaction);
 
-    console.log("Venta realizada");
+    console.log("Venta realizada con éxito");
   }
 }
