@@ -41,7 +41,6 @@ export class ClientService {
    */
   private async initCollection(): Promise<void> {
     await this.clientDB.read();
-
     if (!this.clientDB.data) {
       this.clientDB.data = [];
       await this.clientDB.write();
