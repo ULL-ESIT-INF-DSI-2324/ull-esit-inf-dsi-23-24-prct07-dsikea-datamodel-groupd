@@ -31,7 +31,7 @@
   },
   {
     "furniture_id": 7,
-    "quantity": 69,
+    "quantity": 68,
     "category": "Sofa"
   },
   {
@@ -48,5 +48,10 @@
     "furniture_id": 10,
     "quantity": 50,
     "category": "Display Cabinet"
+  },
+  {
+    "furniture_id": 20,
+    "quantity": 19,
+    "category": "Footstool"
   }
 ]

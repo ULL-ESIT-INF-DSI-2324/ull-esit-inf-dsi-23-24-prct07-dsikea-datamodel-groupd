@@ -88,5 +88,95 @@
     "material": "Glass",
     "price": 300,
     "type": "Display Cabinet"
+  },
+  {
+    "id": 11,
+    "name": "FLÖJGÅRD",
+    "description": "Bamboo bedside table",
+    "dimensions": "40x30x50",
+    "material": "Bamboo",
+    "price": 60,
+    "type": "Bedside Table"
+  },
+  {
+    "id": 12,
+    "name": "SÖNDERGÅRD",
+    "description": "Rattan armchair",
+    "dimensions": "80x70x90",
+    "material": "Rattan",
+    "price": 150,
+    "type": "Armchair"
+  },
+  {
+    "id": 13,
+    "name": "FLUGSKÄR",
+    "description": "Aluminum outdoor table",
+    "dimensions": "120x80x75",
+    "material": "Aluminum",
+    "price": 200,
+    "type": "Outdoor Table"
+  },
+  {
+    "id": 14,
+    "name": "SKÄRKÅP",
+    "description": "Walnut cabinet",
+    "dimensions": "100x50x150",
+    "material": "Walnut",
+    "price": 280,
+    "type": "Cabinet"
+  },
+  {
+    "id": 15,
+    "name": "VÄNNING",
+    "description": "Velvet loveseat",
+    "dimensions": "150x80x90",
+    "material": "Velvet",
+    "price": 500,
+    "type": "Loveseat"
+  },
+  {
+    "id": 16,
+    "name": "HÄMMARÖ",
+    "description": "Steel dining chair",
+    "dimensions": "50x50x90",
+    "material": "Steel",
+    "price": 70,
+    "type": "Dining Chair"
+  },
+  {
+    "id": 17,
+    "name": "KLÖNÖ",
+    "description": "Pine coffee table",
+    "dimensions": "80x80x45",
+    "material": "Pine",
+    "price": 100,
+    "type": "Coffee Table"
+  },
+  {
+    "id": 18,
+    "name": "GRÖNHALS",
+    "description": "Plastic garden chair",
+    "dimensions": "60x60x80",
+    "material": "Plastic",
+    "price": 30,
+    "type": "Garden Chair"
+  },
+  {
+    "id": 19,
+    "name": "SILVERBÄCK",
+    "description": "Silver mirror",
+    "dimensions": "50x70",
+    "material": "Glass",
+    "price": 40,
+    "type": "Mirror"
+  },
+  {
+    "id": 20,
+    "name": "LILLTUNA",
+    "description": "Leather footstool",
+    "dimensions": "40x40x40",
+    "material": "Leather",
+    "price": 50,
+    "type": "Footstool"
   }
 ]

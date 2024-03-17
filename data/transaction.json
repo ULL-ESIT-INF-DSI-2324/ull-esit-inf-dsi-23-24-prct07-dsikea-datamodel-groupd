@@ -124,5 +124,50 @@
     "total": 260,
     "clientId": 1,
     "type": "client_devolution"
+  },
+  {
+    "id": 6,
+    "date": "2024-03-17T20:47:10.432Z",
+    "items": [
+      {
+        "id": 20,
+        "name": "LILLTUNA",
+        "description": "Leather footstool",
+        "dimensions": "40x40x40",
+        "material": "Leather",
+        "price": 50,
+        "type": "Footstool"
+      }
+    ],
+    "total": 1000,
+    "supplierId": 2,
+    "type": "purchase"
+  },
+  {
+    "id": 7,
+    "date": "2024-03-17T20:47:49.011Z",
+    "items": [
+      {
+        "id": 20,
+        "name": "LILLTUNA",
+        "description": "Leather footstool",
+        "dimensions": "40x40x40",
+        "material": "Leather",
+        "price": 50,
+        "type": "Footstool"
+      },
+      {
+        "id": 7,
+        "name": "RÄNNAR",
+        "description": "Leather sofa",
+        "dimensions": "200x100x80",
+        "material": "Leather",
+        "price": 700,
+        "type": "Sofa"
+      }
+    ],
+    "total": 750,
+    "clientId": 1,
+    "type": "sale"
   }
 ]
