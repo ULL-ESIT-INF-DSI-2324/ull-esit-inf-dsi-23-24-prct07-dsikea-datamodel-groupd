@@ -3,7 +3,7 @@
 # Práctica 7 - DSIkea
 
 Guillermo Emmanuel González Méndez - alu0101466941
-Oscar Cordobés Navarro - alu0101478081
+Óscar Cordobés Navarro - alu0101478081
 
 [![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct07-dsikea-datamodel-groupd/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct07-dsikea-datamodel-groupd?branch=main)
 
