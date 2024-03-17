@@ -44,6 +44,8 @@ export function ClientsManagement() {
         case ClientsMenu.Sale:
           "New sale";
           await promptSaleDetails();
+          await waitForInput();
+          consoleMenu();
           break;
         case ClientsMenu.Show:
           "Show clients";
