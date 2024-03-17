@@ -22,7 +22,12 @@ export class totalBillingByAClient extends ReportService {
       clientData.forEach((transaction) => {
         totalBilling += transaction.total;
       });
-      console.log("Facturación total del cliente ", clientID, ": ", totalBilling);
+      console.log(
+        "Facturación total del cliente ",
+        clientID,
+        ": ",
+        totalBilling,
+      );
     } catch (error) {
       console.log("Error: " + error);
     }
@@ -37,10 +42,12 @@ export class totalBillingByAClient extends ReportService {
   public async getData(clientID?: string): Promise<Array<ITransaction>> {
     // Obtener todas las transacciones de los clientes en un periodo de tiempo
     const clientData = await this.transactionService.getCollection();
-    if (clientData.length === 0 || clientID === undefined || this.clientService.getClientById(parseInt(clientID, 10)) === undefined){
-      throw new Error(
-        "No hay transacciones o el cliente no existe",
-      );
+    if (
+      clientData.length === 0 ||
+      clientID === undefined ||
+      this.clientService.getClientById(parseInt(clientID, 10)) === undefined
+    ) {
+      throw new Error("No hay transacciones o el cliente no existe");
     } else {
       const clientNumber = parseInt(clientID, 10);
       if (isNaN(clientNumber)) {

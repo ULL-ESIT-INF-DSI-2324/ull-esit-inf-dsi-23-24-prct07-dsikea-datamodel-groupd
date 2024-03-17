@@ -43,7 +43,9 @@ export function ReportsManagement() {
       switch (answers["command"]) {
         case ReportsMenu.stockByCategory:
           try {
-            const category = await promptSingleString("Enter the category to search");
+            const category = await promptSingleString(
+              "Enter the category to search",
+            );
             const reporter = new stockByCategory();
             await reporter.generateReport(category);
             await waitForInput();
@@ -56,7 +58,9 @@ export function ReportsManagement() {
           break;
         case ReportsMenu.stockByAnID:
           try {
-            const id = await promptSingleString("Enter the furniture ID to search");
+            const id = await promptSingleString(
+              "Enter the furniture ID to search",
+            );
             const reporter = new stockByFurnitureID();
             await reporter.generateReport(id);
             await waitForInput();
@@ -105,7 +109,9 @@ export function ReportsManagement() {
           break;
         case ReportsMenu.totalBillingByAClient:
           try {
-            const id = await promptSingleString("Enter the client ID to search");
+            const id = await promptSingleString(
+              "Enter the client ID to search",
+            );
             const reporter = new totalBillingByAClient();
             await reporter.generateReport(id);
             await waitForInput();
@@ -118,7 +124,9 @@ export function ReportsManagement() {
           break;
         case ReportsMenu.totalBillingByASupplier:
           try {
-            const id = await promptSingleString("Enter the supplier ID to search");
+            const id = await promptSingleString(
+              "Enter the supplier ID to search",
+            );
             const reporter = new totalBillingByASupplier();
             await reporter.generateReport(id);
             await waitForInput();

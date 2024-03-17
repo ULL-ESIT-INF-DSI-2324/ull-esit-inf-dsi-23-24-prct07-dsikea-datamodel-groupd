@@ -13,7 +13,7 @@ describe("Stock Service Tests", () => {
     const stock: IStock = {
       furniture_id: 1,
       quantity: 100,
-      category: "table"
+      category: "table",
     };
     await stockService.addStock(stock);
     const stocks = await stockService.getCollection();
@@ -24,7 +24,7 @@ describe("Stock Service Tests", () => {
     const stock: IStock = {
       furniture_id: 1,
       quantity: 100,
-      category: "table"
+      category: "table",
     };
     await stockService.addStock(stock);
     const stocks = await stockService.getCollection();

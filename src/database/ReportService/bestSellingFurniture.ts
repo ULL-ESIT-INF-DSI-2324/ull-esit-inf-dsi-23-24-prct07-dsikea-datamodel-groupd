@@ -40,7 +40,9 @@ export class bestSellingFurniture extends ReportService {
         }
       });
 
-      console.log("La cantidad de ventas del mueble más vendido es: " + maxSales);
+      console.log(
+        "La cantidad de ventas del mueble más vendido es: " + maxSales,
+      );
 
       const formatData = singleFurtnitures.map((stock) => {
         return {
@@ -83,7 +85,7 @@ export class bestSellingFurniture extends ReportService {
     });
 
     const sortedSales = new Map(
-      [...totalSales.entries()].sort((a, b) => b[1] - a[1])
+      [...totalSales.entries()].sort((a, b) => b[1] - a[1]),
     );
 
     const maxSales = sortedSales.values().next().value;
@@ -92,7 +94,9 @@ export class bestSellingFurniture extends ReportService {
     sortedSales.forEach((value, key) => {
       if (value === maxSales) {
         for (let i = 0; i < maxSales; i++) {
-          bestSellingFurniture.push(this.furnitureService.getFurnitureById(key));
+          bestSellingFurniture.push(
+            this.furnitureService.getFurnitureById(key),
+          );
         }
       }
     });

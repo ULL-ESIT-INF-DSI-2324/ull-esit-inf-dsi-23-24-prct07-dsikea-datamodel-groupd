@@ -1,5 +1,10 @@
 import inquirer from "inquirer";
-import { consoleMenu, promptAddUser, waitForInput, promptSingleString } from "./common.js";
+import {
+  consoleMenu,
+  promptAddUser,
+  waitForInput,
+  promptSingleString,
+} from "./common.js";
 import { Stock } from "../Stock.js";
 
 enum ClientsMenu {
@@ -32,7 +37,10 @@ async function promptSaleDetails() {
   const answers = await inquirer.prompt(questions);
   // Aquí puedes hacer algo con las respuestas
   const stock = new Stock();
-  await stock.clientBuy(parseInt(answers.clientID), answers.furnitureIDs.split(" ").map(Number));
+  await stock.clientBuy(
+    parseInt(answers.clientID),
+    answers.furnitureIDs.split(" ").map(Number),
+  );
 }
 
 /**
@@ -57,7 +65,9 @@ export function ClientsManagement() {
           break;
         case ClientsMenu.Devolution:
           try {
-            const transactionID = await promptSingleString("Enter the transaction ID");
+            const transactionID = await promptSingleString(
+              "Enter the transaction ID",
+            );
             await stock.clientDevolution(parseInt(transactionID));
             await waitForInput();
             consoleMenu();
@@ -82,7 +92,12 @@ export function ClientsManagement() {
         case ClientsMenu.Add:
           try {
             const answers = await promptAddUser();
-            await stock.addUser(answers.name, answers.address, answers.contact, true);
+            await stock.addUser(
+              answers.name,
+              answers.address,
+              answers.contact,
+              true,
+            );
             await waitForInput();
             consoleMenu();
           } catch (error) {

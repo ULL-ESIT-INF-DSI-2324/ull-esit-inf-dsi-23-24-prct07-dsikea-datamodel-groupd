@@ -128,9 +128,7 @@ export class TransactionService {
    * @param total {number} - The total to get the transactions
    * @returns {TransactionType[]} -The transactions that match the total
    */
-  public getTransactionsByTotal(
-    total: number,
-  ): TransactionType[] {
+  public getTransactionsByTotal(total: number): TransactionType[] {
     return this.transactionDB.data.filter((t) => t.total === total);
   }
 

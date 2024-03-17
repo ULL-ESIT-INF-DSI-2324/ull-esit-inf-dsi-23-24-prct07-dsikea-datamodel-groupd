@@ -73,7 +73,7 @@ describe("Transaction Service Tests", () => {
 
   it("should throw an error when getting a transaction by id", () => {
     expect(() => transactionService.getTransactionById(1)).to.throw(
-      "transaction not found"
+      "transaction not found",
     );
   });
 

@@ -4,7 +4,10 @@ import { ClientService } from "./database/ClientsService.js";
 import { TransactionService } from "./database/TransactionService.js";
 import { IClient } from "./interfaces/IClient.js";
 import { IFurniture } from "./interfaces/IFurniture.js";
-import { IClientTransaction, ISupplierTransaction } from "./interfaces/ITransaction.js";
+import {
+  IClientTransaction,
+  ISupplierTransaction,
+} from "./interfaces/ITransaction.js";
 import { IStock } from "./interfaces/IStock.js";
 import { ISupplier } from "./interfaces/ISupplier.js";
 import { SupplierService } from "./database/SupplierService.js";
@@ -16,7 +19,8 @@ export class Stock {
   private stockService: StockService = StockService.getInstance();
   private furnitureService: FurnitureService = FurnitureService.getInstance();
   private clientService: ClientService = ClientService.getInstance();
-  private transactionService: TransactionService = TransactionService.getInstance();
+  private transactionService: TransactionService =
+    TransactionService.getInstance();
   private supplierService: SupplierService = SupplierService.getInstance();
 
   constructor() {}
@@ -30,7 +34,7 @@ export class Stock {
     await stockData.then((stock) => {
       const tableData = stock.map((stock) => {
         const furniture = this.furnitureService.getFurnitureById(
-          stock.furniture_id
+          stock.furniture_id,
         );
         return {
           Nombre: furniture.name,
@@ -46,7 +50,7 @@ export class Stock {
    * @method clientBuy - Executes the purchase of a client given their ID and the IDs of the furniture.
    * @param {number} clientID - The ID of the client.
    * @param {number[]} furnituresID - The IDs of the furniture.
-   * 
+   *
    */
   public async clientBuy(clientID: number, furnituresID: number[]) {
     // Comprobamos que el cliente exista
@@ -80,7 +84,7 @@ export class Stock {
           throw new Error("No hay stock suficiente");
         } else {
           listOfFurnitures.push(
-            this.furnitureService.getFurnitureById(furnitureID)
+            this.furnitureService.getFurnitureById(furnitureID),
           );
         }
       }
@@ -133,7 +137,8 @@ export class Stock {
     }
 
     // Obtenemos la transacción
-    const transaction = this.transactionService.getTransactionById(transactionID);
+    const transaction =
+      this.transactionService.getTransactionById(transactionID);
     // Comprobamos que la transacción sea de venta
     if (transaction.type !== "sale") {
       console.log("La transacción no es de venta");
@@ -169,7 +174,7 @@ export class Stock {
   }
 
   /**
-   * @method getAClient - Retrieves the client data given their ID and displays it in a table 
+   * @method getAClient - Retrieves the client data given their ID and displays it in a table
    * @param {number} clientID - The ID of the client.
    */
   public async getAClient(clientID: number) {
@@ -183,14 +188,19 @@ export class Stock {
   }
 
   /**
-   * @method getAllClients - Retrieves all the clients data and displays it in a table 
+   * @method getAllClients - Retrieves all the clients data and displays it in a table
    * @param {string} name - The name of the client.
    * @param {string} address - The address of the client.
    * @param {string} contact - The contact of the client.
    * @param {boolean} isClient - A boolean that indicates if it is a client or a supplier.
-   * 
+   *
    */
-  public async addUser(name: string, address: string, contact: string, isClient: boolean) {
+  public async addUser(
+    name: string,
+    address: string,
+    contact: string,
+    isClient: boolean,
+  ) {
     if (isClient) {
       const client: IClient = {
         id: await this.clientService.getNextID(),
@@ -250,7 +260,11 @@ export class Stock {
    * @param {number} furnitureID - The ID of the furniture.
    * @param {number} quantity - The quantity of the furniture.
    */
-  public async supplierBuy(supplierID: number, furnitureID: number, quantity:number) {
+  public async supplierBuy(
+    supplierID: number,
+    furnitureID: number,
+    quantity: number,
+  ) {
     // Comprobamos que el proveedor exista
     try {
       this.clientService.getClientById(supplierID);
@@ -272,7 +286,8 @@ export class Stock {
       id: await this.transactionService.getNextID(),
       date: new Date(),
       items: [this.furnitureService.getFurnitureById(furnitureID)],
-      total: this.furnitureService.getFurnitureById(furnitureID).price * quantity,
+      total:
+        this.furnitureService.getFurnitureById(furnitureID).price * quantity,
       supplierId: supplierID,
       type: "purchase",
     };
@@ -281,7 +296,11 @@ export class Stock {
     await this.transactionService.addTransaction(transaction);
 
     // Añadimos el mueble al stock
-    await this.stockService.addStock({furniture_id: furnitureID, quantity: quantity, category: this.furnitureService.getFurnitureById(furnitureID).type});
+    await this.stockService.addStock({
+      furniture_id: furnitureID,
+      quantity: quantity,
+      category: this.furnitureService.getFurnitureById(furnitureID).type,
+    });
 
     console.log("Stock añadido con éxito");
   }
@@ -300,7 +319,8 @@ export class Stock {
     }
 
     // Obtenemos la transacción
-    const transaction = this.transactionService.getTransactionById(transactionID);
+    const transaction =
+      this.transactionService.getTransactionById(transactionID);
     // Comprobamos que la transacción sea de compra
     if (transaction.type !== "purchase") {
       console.log("La transacción no es de compra");
@@ -325,14 +345,14 @@ export class Stock {
       supplierId: transaction.supplierId,
       type: "devolution",
     };
-    
+
     this.transactionService.addTransaction(devolution);
 
     console.log("Devolución realizada con éxito");
   }
 
   /**
-   * @method getASupplier - Retrieves the supplier data given their ID and displays it in a table 
+   * @method getASupplier - Retrieves the supplier data given their ID and displays it in a table
    * @param {number} supplierID - The ID of the supplier.
    */
   public async getASupplier(supplierID: number) {
@@ -346,14 +366,21 @@ export class Stock {
   }
 
   /**
-   * @method getAllSuppliers - Retrieves all the suppliers data and displays it in a table 
+   * @method getAllSuppliers - Retrieves all the suppliers data and displays it in a table
    */
   public async showAllSuppliers() {
     const suppliers = await this.supplierService.getCollection();
     console.table(suppliers);
   }
 
-  public async addFurniture(name: string, description: string, dimensions: string, material: string, price: string, type: string) {
+  public async addFurniture(
+    name: string,
+    description: string,
+    dimensions: string,
+    material: string,
+    price: string,
+    type: string,
+  ) {
     try {
       const furniture: IFurniture = {
         id: await this.furnitureService.getNextID(),

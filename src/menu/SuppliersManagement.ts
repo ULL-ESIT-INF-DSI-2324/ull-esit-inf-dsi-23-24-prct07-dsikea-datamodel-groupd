@@ -1,5 +1,10 @@
 import inquirer from "inquirer";
-import { consoleMenu, promptSingleString, waitForInput, promptAddUser } from "./common.js";
+import {
+  consoleMenu,
+  promptSingleString,
+  waitForInput,
+  promptAddUser,
+} from "./common.js";
 import { Stock } from "../Stock.js";
 
 enum SuppliersMenu {
@@ -40,7 +45,7 @@ async function promptBuyStock() {
   await stock.supplierBuy(
     parseInt(answers.supplierID),
     parseInt(answers.furnitureID),
-    parseInt(answers.quantity)
+    parseInt(answers.quantity),
   );
 }
 
@@ -67,7 +72,7 @@ export function SuppliersManagement() {
         case SuppliersMenu.Devolution:
           try {
             const transactionID = await promptSingleString(
-              "Enter the transaction ID"
+              "Enter the transaction ID",
             );
             await stock.supplierDevolution(parseInt(transactionID));
             await waitForInput();
@@ -80,7 +85,9 @@ export function SuppliersManagement() {
           break;
         case SuppliersMenu.GetSupplier:
           try {
-            const supplierID = await promptSingleString("Enter the supplier ID");
+            const supplierID = await promptSingleString(
+              "Enter the supplier ID",
+            );
             await stock.getASupplier(parseInt(supplierID));
             await waitForInput();
             consoleMenu();
@@ -93,7 +100,12 @@ export function SuppliersManagement() {
         case SuppliersMenu.Add:
           try {
             const answers = await promptAddUser();
-            await stock.addUser(answers.name, answers.address, answers.contact, false);
+            await stock.addUser(
+              answers.name,
+              answers.address,
+              answers.contact,
+              false,
+            );
             await waitForInput();
             consoleMenu();
           } catch (error) {
@@ -104,7 +116,9 @@ export function SuppliersManagement() {
           break;
         case SuppliersMenu.Remove:
           try {
-            const supplierID = await promptSingleString("Enter the supplier ID");
+            const supplierID = await promptSingleString(
+              "Enter the supplier ID",
+            );
             await stock.removeUser(parseInt(supplierID), false);
             await waitForInput();
             consoleMenu();

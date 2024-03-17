@@ -26,7 +26,7 @@ export class totalBillingClientsByYear extends ReportService {
         "Facturación total de los clientes en el año ",
         year,
         ": ",
-        totalBilling
+        totalBilling,
       );
     } catch (error) {
       console.log("Error no se ha realizado ninguna transacción" + error);

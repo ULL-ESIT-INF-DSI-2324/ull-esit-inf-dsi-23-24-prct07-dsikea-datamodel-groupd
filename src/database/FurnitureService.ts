@@ -158,10 +158,9 @@ export class FurnitureService {
     );
   }
 
-  
   /**
    * Retrieves the next available ID for a furniture item.
-   * 
+   *
    * @returns A Promise that resolves to the next available ID.
    */
   public async getNextID(): Promise<number> {

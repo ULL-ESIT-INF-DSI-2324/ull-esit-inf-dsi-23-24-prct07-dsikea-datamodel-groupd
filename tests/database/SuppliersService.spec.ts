@@ -74,7 +74,9 @@ describe("Suppliers Service Tests", () => {
   });
 
   it("should throw an error when getting a supplier by id that does not exist", () => {
-    expect(() => suppliersService.getSupplierById(99)).to.throw("Supplier not found");
+    expect(() => suppliersService.getSupplierById(99)).to.throw(
+      "Supplier not found",
+    );
   });
 
   it("should throw an error when adding a supplier with an existing id", async () => {
@@ -96,9 +98,9 @@ describe("Suppliers Service Tests", () => {
   it("should throw an error when adding a supplier that already exists", async () => {
     const supplier: ISupplier = {
       id: 3,
-      name: 'Jon Doe Doe',
-      contact: '234567890',
-      address: '123 Street'
+      name: "Jon Doe Doe",
+      contact: "234567890",
+      address: "123 Street",
     };
     try {
       await suppliersService.addSupplier(supplier);

@@ -65,15 +65,19 @@ export class SupplierService {
   public async addSupplier(supplier: ISupplier): Promise<void> {
     await this.SupplierDB.read();
     // Check if the Supplier already exists
-    const exists = this.SupplierDB.data.find((f) =>
-      f.name === supplier.name && f.contact === supplier.contact && f.address === supplier.address
+    const exists = this.SupplierDB.data.find(
+      (f) =>
+        f.name === supplier.name &&
+        f.contact === supplier.contact &&
+        f.address === supplier.address,
     );
     if (exists) {
       throw new Error("Supplier already exists");
     }
 
     // Check if the Supplier id or name already exists
-    const idExists = this.SupplierDB.data.filter((f) => f.id === supplier.id).length > 0;
+    const idExists =
+      this.SupplierDB.data.filter((f) => f.id === supplier.id).length > 0;
     if (idExists) {
       throw new Error("Supplier id already exists");
     }

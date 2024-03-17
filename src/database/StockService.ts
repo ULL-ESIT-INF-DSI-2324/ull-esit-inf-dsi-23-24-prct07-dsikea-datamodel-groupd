@@ -72,9 +72,7 @@ export class StockService {
    * @param quantity {number} - The quantity of the stock to add
    * @returns {Promise<void>} - A promise that resolves when the stock is added to the collection
    */
-  public async addStock(
-    stock: IStock
-  ): Promise<void> {
+  public async addStock(stock: IStock): Promise<void> {
     await this.stockDB.read();
     const stockObject = this.stockDB.data.find(
       (f) => f.furniture_id === stock.furniture_id,

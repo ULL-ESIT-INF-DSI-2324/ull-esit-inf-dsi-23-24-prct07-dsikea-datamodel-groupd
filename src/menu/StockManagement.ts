@@ -7,7 +7,7 @@ enum StockMenu {
   Show = "Show Stock",
   AddFurtniture = "Add furniture",
   RemoveFurniture = "Remove furniture",
-  Quit = "Return to main menu"
+  Quit = "Return to main menu",
 }
 
 /**
@@ -49,7 +49,9 @@ export function StockManagement() {
           break;
         case StockMenu.RemoveFurniture:
           try {
-            const furnitureID = await promptSingleString("Enter the furniture ID");
+            const furnitureID = await promptSingleString(
+              "Enter the furniture ID",
+            );
             await stock.removeFurniture(parseInt(furnitureID));
             await waitForInput();
             consoleMenu();
@@ -102,5 +104,12 @@ async function promptAddFurniture() {
   ];
   const answers = await inquirer.prompt(questions);
   const stock = new Stock();
-  await stock.addFurniture(answers.name, answers.description, answers.dimensions, answers.material, answers.price, answers.type);
+  await stock.addFurniture(
+    answers.name,
+    answers.description,
+    answers.dimensions,
+    answers.material,
+    answers.price,
+    answers.type,
+  );
 }

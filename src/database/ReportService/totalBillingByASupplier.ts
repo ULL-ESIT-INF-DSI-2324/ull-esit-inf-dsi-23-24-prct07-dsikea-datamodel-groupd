@@ -21,7 +21,12 @@ export class totalBillingByASupplier extends ReportService {
       supplierData.forEach((transaction) => {
         totalBilling += transaction.total;
       });
-      console.log("Facturación total del proveedor ", supplierID, ": ", totalBilling);
+      console.log(
+        "Facturación total del proveedor ",
+        supplierID,
+        ": ",
+        totalBilling,
+      );
     } catch (error) {
       console.log("Error " + error);
     }
@@ -37,7 +42,12 @@ export class totalBillingByASupplier extends ReportService {
   public async getData(supplierID?: string): Promise<Array<ITransaction>> {
     // Obtener todas las transacciones de los proveedores en un periodo de tiempo
     const supplierData = await this.transactionService.getCollection();
-    if (supplierData.length === 0 || supplierID === undefined || this.supplierService.getSupplierById(parseInt(supplierID, 10)) === undefined) {
+    if (
+      supplierData.length === 0 ||
+      supplierID === undefined ||
+      this.supplierService.getSupplierById(parseInt(supplierID, 10)) ===
+        undefined
+    ) {
       throw new Error(
         "No hay transacciones o no se ha especificado un proveedor",
       );
