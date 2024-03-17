@@ -2,7 +2,19 @@
   {
     "id": 1,
     "name": "John Doe",
+    "contact": "871",
+    "address": "Callenueva"
+  },
+  {
+    "id": 2,
+    "name": "Jane Doe",
     "contact": "1234567890",
+    "address": "Callevieja"
+  },
+  {
+    "id": 3,
+    "name": "Pablo Motos",
+    "contact": "2020202",
     "address": "123 Street"
   }
 ]
